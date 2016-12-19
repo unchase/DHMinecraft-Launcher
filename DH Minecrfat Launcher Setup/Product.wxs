@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  
+  <!--включим в проект файл с глобальными переменными-->
+  <?include Variables.wxi?>
+    
+  <!--Ключ Product — описывает свойства продукта.
+      Id — идентификатор продукта, уникальный GUID. 
+      Name — название продукта
+      Language — язык пакета установки (1049 - русский)
+      Version — версия продукта
+      Manufacturer — производитель
+      UpgradeCode — уникальный GUID для обновления продукта-->
+	<Product Id="$(var.ProductCode)" Codepage="1251" Name="$(var.ProductName)" Language="1049" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)">
+		<!--Ключ Package — описывает свойства msi-пакета.
+      Description — описание пакета установки. 
+      Manufacturer - название компании-разработчика продукта
+      Comments - комментарий, отображается в свойствах пакета
+      InstallerVersion - номер версии Windows Installer, необходимой для установки пакета. Записывается как [старший номер версии]*100 + [младший номер версии]. Для Windows Installer 4.5 будет значение: 4 * 100 + 5 = 405
+      InstallPrivileges - требуются ли повышенные привилегии для установки. Значения: elevated и limited. По-умолчанию стоит elevated
+      InstallScope - устанавливать для всех пользователей или для одного
+      Platform – поддерживаемая аппаратная платформа. Допустимыми значениями являются x86, x64 и ia64
+      SummaryCodepage - номер кодовой страницы для сводной информации о пакете. Устанавливается аналогично Product.CodePage
+      -->
+    <Package Description="$(var.ProductName) - лаунчер minecraft" Manufacturer="$(var.Manufacturer)" Comments="Установочный пакет для файлов лаунчера minecraft 1.6.4" InstallerVersion="200" Compressed="yes" InstallScope="perUser" SummaryCodepage="1251" />
+
+		<MajorUpgrade DowngradeErrorMessage="Последняя версия [ProductName] уже установлена." />
+		<Media Id="1" Cabinet="DHMinecraftLauncherMedia1.cab" EmbedCab="yes"/>
+    <!--<MediaTemplate />-->
+
+    <!--проверка, была ли установлен на пользовательском компьютере .NET Framework 4.5-->
+    <PropertyRef Id="NETFRAMEWORK45" />
+    <Condition Message="Установка данного приложения требует наличия установленного .NET Framework 4.5.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+      
+    <!--Установка компонента невозможна без включения его в одну из Feature. Этот элемент может быть использован когда нам необходимо дать пользователю возможность выбора, что устанавливать, а что нет. В условиях нашей задачи ничего не говорилось о возможности выбора, но несмотря на это нам необходимо привязать описанный Component к одной единственной Feature-->
+		<!--наборы компонентов-->
+    <Feature Id="Complete" Title="$(var.ProductName)" Level="1" Description="Полная установка" Display="expand" ConfigurableDirectory="INSTALLLOCATION" AllowAdvertise="no" Absent="disallow" InstallDefault="local">
+			<Feature Id="RequiredComponents" Title="Необходимые компоненты" Description="Выжные компоненты" Level="1" AllowAdvertise="no" Absent="disallow" InstallDefault="local">
+        <ComponentRef Id="MainExecutableComponent"/>
+        <ComponentRef Id="MainExecutableConfigComponent"/>
+        <ComponentRef Id="AlphaBlendTextBoxDllComponent"/>
+        <ComponentRef Id="ZxingDllComponent"/>
+        <ComponentRef Id="ProgramMenuDir"/>
+        <ComponentRef Id="ProgramsMenuShortcut"/>
+      </Feature>
+      
+      <Feature Id="ExecutableSymbols" Title="Отладочные символы" Description="Дополнительные библиотеки для отладки" Level="2" AllowAdvertise="no" Absent="allow" InstallDefault="local">
+        <ComponentRef Id="MainExecutablePdbComponent"/>
+      </Feature>
+    
+      <Feature Id="HelpFiles" Title="Справочная информация" Description="Справочная информация о программе" Level="2" AllowAdvertise="no" Absent="disallow" InstallDefault="source">
+        <Feature Id="GeneralHelpFiles" Title="Руководство пользователя" Description="Руководство пользователя программы" Level="2" AllowAdvertise="system" Absent="allow" InstallDefault="local">
+          <ComponentRef Id="GeneralHelp"/>
+        </Feature>
+        <Feature Id="AdditionalHelpFiles" Title="Руководство администратора" Description="Руководство администратора программы" Level="2" AllowAdvertise="system" Absent="allow" InstallDefault="local">
+          <ComponentRef Id="AdminHelp"/>
+        </Feature> 
+      </Feature>
+		</Feature>
+    
+    <!--пиктограммы-->
+    <!--пиктограмма, извлекаемая из исполняемого (.exe) файла-->
+    <Icon Id="ProgramIcon.exe" SourceFile="$(var.DHMinecraft Launcher.TargetPath)"/>
+    <Icon Id="HelpIcon.ico" SourceFile="Symbol-Help.ico"/>
+  
+    <!--интерфейс пользователя-->
+    <UI Id="DHMinecraftLauncher WixUI_Mondo">
+      <UIRef Id="WixUI_Mondo"/>
+      <UIRef Id="WixUI_ErrorProgressText"/>
+    </UI>
+	</Product>
+
+	<Fragment>
+    <!--Определимся теперь с тем куда мы будем устанавливать наш продукт-->
+		<Directory Id="TARGETDIR" Name="SourceDir"> <!--виртуальный корневой элемент для всех папок, которые будут использоваться для установки проекта.-->
+      <Directory Id="ProgramFilesFolder">       <!--папка Program Files (на что указывает Id=«ProgramFilesFolder»).-->
+				<Directory Id="INSTALLLOCATION" Name="$(var.ProductName)"> <!--папка с именем продукта в папке Program Files.-->
+          <Directory Id="HelpFilesFolder" Name="Doc"/> <!--подкаталог Doc-->
+        </Directory>
+			</Directory>
+      <!--Пуск\Программы\DHMinecraft Launcher-->
+      <Directory Id="ProgramMenuFolder"> 
+        <Directory Id="ProgramMenuDir" Name="DHMinecraft Launcher"/>
+      </Directory>
+      <Directory Id="DesktopFolder"/> <!--рабочий стол-->
+		</Directory>
+	</Fragment>
+  
+  <Fragment>
+    <!--содержимое для размещения в каталоге с идентификатором INSTALLLOCATION (элементы в каталоге с прграммой)-->
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="MainExecutableComponent" Guid="F0147F87-7EC4-469C-ABC6-B84B28367ECD">
+        <File Id="DHMinecraftLauncherExe" Name="$(var.DHMinecraft Launcher.TargetFileName)" Source="$(var.DHMinecraft Launcher.TargetPath)" DiskId="1" KeyPath="yes">
+          <!--ярлыки для запуска программы-->
+          <Shortcut Id="DesktopShortcut" Name="DHMinecraft Launcher" Description="Ярлык DHMinecraft Launcher на рабочем столе" WorkingDirectory="INSTALLLOCATION" Directory="DesktopFolder" Advertise="yes" Icon="ProgramIcon.exe"></Shortcut>
+          <Shortcut Id="ProgramsMenuShortcut" Name="Запустить DHMinecraft Launcher" Description="Запускает лаунчер DHMinecraft Launcher" WorkingDirectory="INSTALLLOCATION" Directory="ProgramMenuDir" Advertise="yes" Icon="ProgramIcon.exe"></Shortcut>
+        </File>
+      </Component>
+    
+      <!-- Свойства Component:
+      Permanent – установка в yes запрещает удаление содержимого компонента при деинсталляции
+      NeverOverwrite – присваивание значения yes заставляет установщик не обновлять содержимое компонента в тех случаях, когда ключевой файл или запись реестра уже существует
+      Location – необходим, если содержащийся внутри компонента файл должен запускаться с диска или через сеть. Допустимыми значениями являются: source – запуск только с источника; either – запуск с источника или локальная установка. Значение local – только возможность локальной установки – указывать не обязательно, применяется по умолчанию
+      Win64 – применяется в случае, когда один пакет устанавливает одновременно как 32-х, так и 64-битные компоненты. Для последних необходимо установить данный атрибут в yes
+      -->
+      <!--конфигурационный файл-->
+      <Component Id="MainExecutableConfigComponent" Guid="7852C949-E262-49C2-98C0-DA5FBC3A38C1">
+        <File Id="DHMinecraftLauncherExeConfig" Name="$(var.DHMinecraft Launcher.TargetName).exe.config" Source="$(var.DHMinecraft Launcher.TargetDir)" DiskId="1" KeyPath="yes"/>
+      </Component>
+    
+      <!--отладочные символы-->
+      <Component Id="MainExecutablePdbComponent" Guid="4C1CE10F-8F04-4E06-98C5-4354CA9C12FA">
+        <File Id="DHMinecraftLauncherPdb" Name="$(var.DHMinecraft Launcher.TargetName).pdb" Source="$(var.DHMinecraft Launcher.TargetDir)" DiskId="1" KeyPath="yes"/>
+      </Component>
+    
+      <!--файл с необходимой для установки библиотекой AlphaBlendTextBox.dll-->
+      <Component Id="AlphaBlendTextBoxDllComponent" Guid="AAA7A517-3CFC-4CAD-92F5-EBD6BEF2B6E6">
+        <File Id="AlphaBlendTextBoxDll" Name="AlphaBlendTextBox.dll" Source="$(var.DHMinecraft Launcher.TargetDir)" DiskId="1" KeyPath="no"/>
+      </Component>
+    
+      <!--файл с необходимой для установки библиотекой AlphaBlendTextBox.dll-->
+      <Component Id="ZxingDllComponent" Guid="931454D7-4C59-42E8-BF93-F618590002F2">
+        <File Id="ZxingDll" Name="zxing.dll" Source="$(var.DHMinecraft Launcher.TargetDir)" DiskId="1" KeyPath="no"/>
+        <File Id="ZxingPdb" Name="zxing.pdb" Source="$(var.DHMinecraft Launcher.TargetDir)" DiskId="1" KeyPath="no"/>
+        <File Id="ZxingXml" Name="zxing.xml" Source="$(var.DHMinecraft Launcher.TargetDir)" DiskId="1" KeyPath="no"/>
+      </Component>
+    </DirectoryRef>
+  
+    <!--каталог в меню Пуск. Удаление при деинсталяции-->
+    <DirectoryRef Id="ProgramMenuDir">
+      <Component Id="ProgramMenuDir" Guid="D74ABBF5-4198-45B1-8A2D-F509E1B7C9D1">
+        <RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id="HelpFilesFolder">
+      <!---файл руководства пользователя-->
+      <Component Id="GeneralHelp" Guid="3C02488E-18FB-4E84-805D-1AF86B876BD9" Location="either">
+        <File Id="GeneralHelpRtf" Name="GeneralHelp.rtf" DiskId="1" KeyPath="yes" Compressed="yes">
+          <Shortcut Id="GeneralHelpShortcut" Name="Руководство пользователя" Description="Основное руководство пользователя" WorkingDirectory="HelpFilesFolder" Directory="ProgramMenuDir" Advertise="yes" Icon="HelpIcon.ico"/>
+        </File>
+      </Component>
+      <!--файл руководства администратора-->
+      <Component Id="AdminHelp" Guid="43D8296A-09BD-4E05-ADF1-1659E212D23E">
+        <File Id="AdminHelpRtf" Name="AdminHelp.rtf" DiskId="1" KeyPath="yes">
+          <Shortcut Id="AdminHelpShortcut" Name="Руководство администратора" Description="Руководство администратора DHMinecraft Launcher" WorkingDirectory="HelpFilesFolder" Directory="ProgramMenuDir" Advertise="yes" Icon="HelpIcon.ico"/>
+        </File>
+      </Component>
+    </DirectoryRef>
+  
+    <!--элементы в главном меню-->
+    <DirectoryRef Id="ProgramMenuDir">
+      <!--ярлык для удаления программы-->
+      <Component Id="ProgramsMenuShortcut" Guid="18CEA719-4319-4BEF-B05E-B2D87B4DDCF7">
+        <Shortcut Id="UninstallProduct" Name="Удалить DHMinecraft Launcher" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" Description="Удаляет приложение DHMinecraft Launcher с данного компьютера"/>
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+	<Fragment>
+    <!-- файлы в пакет установки. Для этого сначала добавим устанавливаемые компоненты.-->
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+	</Fragment>
+</Wix>

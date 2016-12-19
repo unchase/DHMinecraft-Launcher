@@ -1,0 +1,2 @@
+D:\Kola\MyPrograms\DHMinecraft Launcher\DH Minecrfat Launcher Setup\bin\Debug\DH Minecrfat Launcher Setup.msi
+D:\Kola\MyPrograms\DHMinecraft Launcher\DH Minecrfat Launcher Setup\bin\Debug\DH Minecrfat Launcher Setup.wixpdb

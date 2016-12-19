@@ -1,0 +1,16 @@
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\DHMinecraft Launcher Configurator.exe.config
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\DHMinecraft Launcher Configurator.exe
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\DHMinecraft Launcher Configurator.pdb
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft_Launcher_Configurator.FormMainDHMinecraftLauncherConfigurator.resources
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft_Launcher_Configurator.Properties.Resources.resources
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.csproj.GenerateResource.Cache
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.exe
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.pdb
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\Ionic.Zip.dll
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\Ionic.Zip.pdb
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\Ionic.Zip.xml
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\AlphaBlendTextBox.dll
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\7za.exe
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.csprojResolveAssemblyReference.cache
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft_Launcher_Configurator.FormUploadBuildToServerWithFTP.resources

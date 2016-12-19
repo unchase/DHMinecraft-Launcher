@@ -1,0 +1,15 @@
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.exe.config
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.exe
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.pdb
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.FormMainLauncher.resources
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.Properties.Resources.resources
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.csproj.GenerateResource.Cache
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.exe
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.pdb
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\AlphaBlendTextBox.dll
+d:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.FormSettings.resources
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.dll
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.pdb
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.xml
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.FormDownloadAndUpdateFiles.resources
+d:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.csprojResolveAssemblyReference.cache

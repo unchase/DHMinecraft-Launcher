@@ -1,0 +1,6 @@
+obj\Debug\Product.wixobj
+D:\Kola\MyPrograms\DHMinecraft Launcher\DH Minecrfat Launcher Setup\bin\Debug\DH Minecrfat Launcher Setup.msi
+D:\Kola\MyPrograms\DHMinecraft Launcher\DH Minecrfat Launcher Setup\bin\Debug\DH Minecrfat Launcher Setup.wixpdb
+obj\Debug\DH Minecrfat Launcher Setup.wixproj.BindContentsFileListru-RU.txt
+obj\Debug\DH Minecrfat Launcher Setup.wixproj.BindOutputsFileListru-RU.txt
+obj\Debug\DH Minecrfat Launcher Setup.wixproj.BindBuiltOutputsFileListru-RU.txt

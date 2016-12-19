@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://dotnetzip.codeplex.com/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="Chrome" prefix="og: http://ogp.me/ns# profile: http://ogp.me/ns/profile#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta id="CompatabilityMode" http-equiv="X-UA-Compatible" content="IE=edge">
+	    
+        <link href="./DotNetZip Library - Home_files/StyleSheet.ashx" id="MasterCss" rel="stylesheet" type="text/css">
+        <link rel="SHORTCUT ICON" href="http://www.codeplex.com/favicon.ico">
+        <title>DotNetZip Library - Home</title>
+        
+        <!--
+        Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code,
+        not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx.
+        -->
+        <script type="text/javascript" src="./DotNetZip Library - Home_files/ai.js" async=""></script><script src="./DotNetZip Library - Home_files/jquery-1.4.4.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            if (typeof jQuery === 'undefined') {
+                document.write(unescape("%3Cscript src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <script src="./DotNetZip Library - Home_files/jquery-ui.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            if (typeof jQuery.ui === 'undefined') {
+                document.write(unescape("%3Cscript src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js' type='text/javascript'%3E%3C/script%3E"));
+            }
+        </script>
+
+        
+            <script type="text/javascript">
+                var appInsights = { queue: [], start: function (n) { function r(n, t) { n[t] = function () { var i = arguments; n.queue.push(function () { n[t].apply(n, i) }) } } var t, i; this.applicationInsightsId = n; this.accountId = null; this.appUserId = null; r(this, "logEvent"); r(this, "logPageView"); t = document.createElement("script"); t.type = "text/javascript"; t.src = "//az416426.vo.msecnd.net/scripts/ai.js"; t.async = !0; i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(t, i) } };
+                appInsights.start("f5504185-cb9a-4174-95ba-928e1ac1492c");
+                
+                appInsights.logPageView();
+            </script>
+        
+    <style type="text/css">.SideBar, .SideBarPadding{display:none;}.MainContent{width:auto;}.SiteContentTable{width:100%;}</style>
+    <style id="ProjectStyles" type="text/css">
+        .SiteHeader, .SiteHeaderLeft {
+            height:45px !important;
+            overflow:hidden;
+        }
+        .SiteContent 
+        {
+            padding: 0 0 1em 0;
+            margin-top:0;
+            min-height:225px;
+            border-right: 1px solid lightgrey;
+            border-left: 1px solid lightgrey;
+            border-bottom: 1px solid lightgrey;
+        }
+        .IE table.MinWidthContent
+        {
+	        table-layout: auto !important;	
+        }
+    </style>
+    
+    
+    <style type="text/css">.ProjectContent{padding:0;}</style>
+    <style type="text/css">
+        .WikiHolder
+        {
+            margin: 0 1em 0 0;
+        }
+        #WikiContent
+        {
+            margin-top: 15px;
+        }
+        #WikiBreadCrumbs
+        {
+            margin: 0.25em 0 1em 0;
+        }
+        .SecondarySearchButton 
+        {
+            margin:0 0 0 -0.6em;
+        }
+        .FF .SecondarySearchButton 
+        {
+            margin:-0.1em 0 0 -0.5em;
+            height: 22px;
+        }
+        .IE .SecondarySearchButton
+        {
+            width: 22px;
+            height: 22px;
+        }
+    </style>
+    
+    
+    
+    
+    <meta id="WTProjectName" name="WT.pi" content="DotNetZip">
+    
+
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://dotnetzip.codeplex.com/rsd">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" title="WLWManifest" href="http://dotnetzip.codeplex.com/wlwmanifest.xml">
+    
+    
+        <link rel="alternate" type="application/rss+xml" title="DotNetZip Library" url="http://dotnetzip.codeplex.com/project/feeds/rss">
+    
+        
+        <link rel="alternate" type="application/rss+xml" title="DotNetZip Library - Discussions" url="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fforum%2fdotnetzip">
+        
+        <link rel="alternate" type="application/rss+xml" title="DotNetZip Library - Issues" url="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fworkitem%2fdotnetzip">
+        
+        <link rel="alternate" type="application/rss+xml" title="DotNetZip Library - Downloads" url="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fdotnetzip">
+        <link rel="alternate" type="application/rss+xml" title="DotNetZip Library - Reviews" url="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2freview%2fdotnetzip">
+        
+    
+        <link rel="alternate" type="application/rss+xml" title="DotNetZip Library - Source code" url="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fsourcecontrol%2fdotnetzip">
+        <link rel="alternate" type="application/rss+xml" title="DotNetZip Library - Wiki" url="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fwiki%2fdotnetzip">
+    
+        
+    
+        <meta content="summary" name="twitter:card"><meta content="@CodePlex" name="twitter:site"><meta content="http://dotnetzip.codeplex.com/Wikipage?ProjectName=dotnetzip" name="twitter:url"><meta content="DotNetZip Library" name="twitter:title"><meta content="DotNetZip is a FAST, FREE class library and toolset for manipulating zip files. Use VB, C&amp;#35; or  any .NET language to easily create, extract, or update zip files." name="twitter:description"><meta content="http://www.codeplex.com/favicon.ico" name="twitter:image"><meta content="CodePlex" property="og:site_name"><meta content="http://dotnetzip.codeplex.com/Wikipage?ProjectName=dotnetzip" property="og:url"><meta content="object" property="og:type"><meta content="DotNetZip Library" property="og:title"><meta content="DotNetZip is a FAST, FREE class library and toolset for manipulating zip files. Use VB, C&amp;#35; or  any .NET language to easily create, extract, or update zip files." property="og:description"><meta content="http://www.codeplex.com/favicon.ico" property="og:image">
+    
+
+    <script type="text/javascript" async="" src="./DotNetZip Library - Home_files/a.min.js"></script></head>
+    
+    <body class=" NoImages">
+        <script src="./DotNetZip Library - Home_files/ScriptLoader.ashx" type="text/javascript"></script>
+        <form id="aspnetForm" autocomplete="off" method="POST" enctype="multipart/form-data">
+            <input name="__RequestVerificationToken" type="hidden" value="2dwUDMjiX68AzhVXpfS48lNuPK4plU3D46WZYM4y0BhSFs78SLqPzCZDDTBBNOTy2J1S-bOAFya1pLmiLr15_geuuzZu75PReneuysw1P_0Yqx-Ctm9JaWcVahXW9fFwSmwR9Q2">
+            
+            
+            
+            <div style="display:none;">
+                
+                    <script type="text/javascript">
+                        $loadScript("https://siterecruit.comscore.com/sr/codeplex/broker.js");
+                    </script>
+
+                
+                
+                <img id="BlankImage" style="width:0;height:0;" src="./DotNetZip Library - Home_files/blank.png" onload="self.logoImageLoaded=true;">
+
+                <script language="javascript" type="text/javascript">
+                    var date = new Date();
+                    var timezoneOffset = date.getTimezoneOffset() / 60 * -1;
+                    var timezoneOffsetCookie = getCookie("TimezoneOffset");
+                    var firstTimeSetTimezoneCookie = false;
+
+                    if (timezoneOffsetCookie == null || timezoneOffsetCookie != timezoneOffset) {
+                        firstTimeSetTimezoneCookie = true;
+                        document.cookie = "TimezoneOffset=" + timezoneOffset + '; domain=.codeplex.com;expires=Sat, 25 Apr 2015 04:03:28 UTC';
+                    }
+                </script>
+                
+                
+                    <noscript>
+                        &lt;a href="http://www.omniture.com" title="Web Analytics"&gt;&lt;img src="http://msstonojstemp.112.2O7.net/b/ss/msstonojstemp/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" /&gt;&lt;/a&gt;
+                    </noscript>
+                
+            </div>
+            
+            <div id="header">
+                <div id="header_wrap" class="row">
+                    <p id="logo"><a href="http://www.codeplex.com/">Code<span class="semi">Plex</span></a><span id="tagline">Project Hosting for Open Source Software</span></p>
+                    
+
+<ul id="nav">
+
+    <li><a href="http://dotnetzip.codeplex.com/site/register/new" id="registerLink" class="ZoomFix">Register</a></li>
+    <li><a class="SignInLink" href="https://www.codeplex.com/site/login?RedirectUrl=http%3a%2f%2fdotnetzip.codeplex.com%2fWikipage" id="signInLink">Sign In</a></li>
+  
+    <li class="last"><a class="rss_site_icon" href="http://www.codeplex.com/site/feeds/rss" type="application/rss+xml" rel="Alternate" title="CodePlex Site Activity"></a></li>
+</ul>
+                    <input id="searchsite" name="searchsite" maxlength="500" type="text" value="" autocomplete="off" title="Search all projects" style="color: rgb(170, 170, 170); font-style: italic;"><span id="search_mag"><a id="submitSearch" name="submitSearch" class="magnify" title="Search all projects" href="http://dotnetzip.codeplex.com/#"></a></span>
+                    <script>
+	$(document).ready(function() {
+    var searchButton = $('#submitSearch'),
+        searchBar = $('#searchsite');
+
+    // Register our own handler for the search event while we wait for the SearchBox script to load.
+    searchButton.bind('click.backupSearchBox', doProjectSearch);
+    searchBar.bind('keypress.backupSearchBox', function(e) { if ($keyCode(e) === 13) { doProjectSearch(); return false; } });
+
+    function cleanupSearchEvents() {
+        // If the SearchBox was loaded, unregister our handlers.
+        if (epx_loaded) {
+            searchButton.unbind('.backupSearchBox');
+            searchBar.unbind('.backupSearchBox');
+        }
+    }
+
+    $loadScript('http://i4.services.social.microsoft.com/search/Widgets/SearchBox.jss?appid=1000&scopeid=1&boxId=searchsite&btnId=submitSearch&watermark=Search%20all%20projects&overrideWatermark=true&searchLocation=%2fsite%2fsearch&allowEmptySearch=true&focusOnInit=False&minimumTermLength=3', cleanupSearchEvents);
+})
+function doProjectSearch() {
+    
+    var url = '/site/search';
+
+    //If search term is not same as watermark
+    if($('#searchsite').val() != 'Search all projects')    
+    {        
+        url = url + '?query=' + encodeURIComponent($('#searchsite').val());
+    }
+
+    
+    var callback = '';
+    if (callback.length > 0 && eval('typeof ' + callback) != 'undefined')
+        url += eval(callback + '()');
+
+    window.location.href = url;
+    return false;
+}
+</script>
+                <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; background-color: rgb(255, 255, 255); color: rgb(122, 132, 142); font-family: &#39;Segoe UI&#39;, &#39;Microsoft Sans Serif&#39;, Arial, Geneva, sans-serif; font-size: 13px;"><div id="SuggestionContainer"><ul style="list-style: none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;"></ul></div></div></div>
+            </div>
+            
+            <div id="wrap">
+                
+    <div id="sub_heading" class="row">
+        
+        <div id="ProjectHeader">
+            <div id="project_title_row" class="row">
+                <div id="project_logo">
+                    
+    
+    <h1><a href="./DotNetZip Library - Home_files/DotNetZip Library - Home.htm"><img src="./DotNetZip Library - Home_files/Download" alt="DotNetZip Library"></a></h1>
+
+                </div>
+            </div>
+        </div>
+        
+        <div id="ProjectDetailsDiv">
+            
+        </div>
+		<div class="clear"></div>
+        
+
+<ul id="page_box_links">
+	<li id="homeTabCell" style="width: 75px;"><a id="homeTab" href="./DotNetZip Library - Home_files/DotNetZip Library - Home.htm" class="home_active">home</a><div></div></li>
+    
+	<li id="sourceTabCell" style="width: 125px;"><a id="sourceTab" href="http://dotnetzip.codeplex.com/SourceControl/latest" class="box_source">source code</a><div></div></li>
+    
+	<li id="releasesTabCell" style="width: 117px;"><a id="releasesTab" href="http://dotnetzip.codeplex.com/releases/view/68268" class="box_downloads">downloads</a><div></div></li>
+    
+    <li id="documentationTabCell" style="width: 155px;"><a id="documentationTab" href="http://dotnetzip.codeplex.com/documentation" class="box_documentation">documentation</a><div></div></li>
+    
+	<li id="discussionTabCell" style="width: 124px;"><a id="discussionTab" href="http://dotnetzip.codeplex.com/discussions" class="box_discussions">discussions</a><div></div></li>
+    
+	<li id="workItemsTabCell" style="width: 82px;"><a id="workItemsTab" href="http://dotnetzip.codeplex.com/workitem/list/basic" class="box_issue">issues</a><div></div></li>
+    
+	<li id="peopleTabCell" style="width: 82px;"><a id="peopleTab" href="http://dotnetzip.codeplex.com/team/view" class="box_people">people</a><div></div></li>
+	<li id="licenseTabCell" style="width: 82px;" class="last"><a id="licenseTab" href="http://dotnetzip.codeplex.com/license" class="box_license">license</a><div></div></li>
+    
+    <span class="stretch"></span>
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#page_box_links').applyLastClassToList();
+    });
+</script>
+		    <div class="clear"></div>
+            
+    <div id="DeleteWikiPagePanel" class="modal" style="display: none;">
+        <div class="row">
+            <h2>Are you Sure? <a href="javascript:return false;" class="close">X</a></h2>
+        </div>
+        <div class="modal_info">
+            By clicking Delete, all history, comments and attachments for this page will be deleted and cannot be restored.
+            <div class="modal_buttons">
+                <input type="button" id="CancelButton" class="cancel" value="Cancel">
+                <input type="button" id="DeleteButton" class="ok" value="Delete">
+            </div>
+            <div class="ClearBoth"></div>
+        </div>
+    </div>
+    
+    <div id="homepage_sub_menu">
+		<ul class="page_box_sublinks">
+            
+                <li><a id="pageInfoHyperLink" href="http://dotnetzip.codeplex.com/wiki/PageInfo?title=Home" title="Page information for Home page.">Page Info</a></li>
+            
+            <li class="last"><a id="changesHyperlink" href="http://dotnetzip.codeplex.com/wikipage/history" title="View change history for all pages.">Change History (all pages)</a></li>
+		</ul>
+        
+
+<div>
+    
+    <div id="actionBar" class="action_bar">
+        <ul id="actionBar_ul" class="actionBar_sublinks subtab_right" style="vertical-align: middle;">
+
+            
+
+                <li id="li_actionbar_followproject" data-action-id="actionbar_followproject" data-action-type="None" class="actionBar_sublinks" data-options-id="64f99df8-6a3b-48a6-bad5-cac613d372de">
+                
+                     
+                    
+                    <div class="actionBar_custom_content"></div>
+
+                    <a href="http://dotnetzip.codeplex.com/#" id="actionbar_followproject" title="Follow this project to get updates in your activity stream." class="action_bar_item_link"><img id="img_actionbar_followproject" class="action_bar_item_image" src="./DotNetZip Library - Home_files/actionbar_follow.png" style="vertical-align: middle"> Follow (1940)</a>
+
+                </li>
+
+            
+
+                <li id="li_actionbar_subscribe" data-action-id="actionbar_subscribe" data-action-type="PopUp" class="actionBar_sublinks last" data-options-id="669d9125-a633-4cd4-b136-ae8a7bc0d4a1">
+                
+                    <script class="options" defer="defer" id="669d9125-a633-4cd4-b136-ae8a7bc0d4a1" type="application/json">{}</script> 
+                    
+                    <div class="actionBar_custom_content">
+
+<div id="rssHoverDiv" class="HoverPanel LeftHoverWidth" style="display: none">
+        <ul id="3_FeedsPanel" class="RssFeedsPanel">
+            <li>
+                <a id="ProjectRssLink" href="http://dotnetzip.codeplex.com/project/feeds/rss" class="ArrowSmall NoUnderline">All Project Updates</a>
+            </li>
+            
+            <li>
+                <a id="DiscussionRssLink" href="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fforum%2fdotnetzip" class="ArrowSmall NoUnderline">Discussions</a>
+            </li>
+            
+            <li>
+                <a id="IssueTrackerRssLink" href="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fworkitem%2fdotnetzip" class="ArrowSmall NoUnderline">Issue Tracker</a>
+            </li>
+            
+            <li>
+                <a id="ReleasesRssLink" href="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fdotnetzip" class="ArrowSmall NoUnderline">Downloads</a>
+            </li>
+            <li>
+                <a id="ReviewsRssLink" href="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2freview%2fdotnetzip" class="ArrowSmall NoUnderline">Reviews</a>
+            </li>
+            
+            <li>
+                <a id="SourceControlRssLink" href="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fsourcecontrol%2fdotnetzip" class="ArrowSmall NoUnderline">Source Code</a>
+            </li>
+            <li>
+                <a id="WikiRssLink" href="http://dotnetzip.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2fwiki%2fdotnetzip" class="ArrowSmall NoUnderline">Wiki &amp; Documentation</a>
+            </li>
+        </ul>
+</div></div>
+
+                    <a href="http://dotnetzip.codeplex.com/#" id="actionbar_subscribe" title="Subscribe to project updates in RSS feeds." class="action_bar_item_link">
+                        <img id="img_actionbar_subscribe" class="action_bar_item_image" src="./DotNetZip Library - Home_files/actionbar_subscribe.png" style="vertical-align: middle">
+                        Subscribe
+                    </a>
+
+                </li>
+
+            
+        </ul>
+    </div>
+</div>
+        <div class="clear"></div>
+    </div>
+    
+        
+
+    </div>
+    
+    
+    
+<div id="left_column" class="no_border">
+    
+
+    <div class="WikiHolder">
+
+        
+            <div id="WikiContent" class="WikiContent">
+                <div class="wikidoc"><h1>DotNetZip - Zip and Unzip in C#, VB, any .NET language</h1>
+DotNetZip is a FAST, FREE class library and toolset for manipulating zip files. Use VB, C# or  any .NET language to easily create, extract, or update zip files.<br><br>DotNetZip is the best open-source ZIP library for .NET.  Just look at <a href="http://dotnetzip.codeplex.com/releases/view/27890#ReviewsAnchor">the reviews!</a> <br><br><table><tbody><tr><th> <b>Xceed is a community sponsor of DotNetZip.</b> </th></tr>
+<tr><td> Developers look to <a href="http://xceed.com/Zip_Net_Intro.html?adtype=153">Xceed Zip for .NET</a> and <a href="http://xceed.com/ZipRT_Net_Intro.html?adtype=152">Xceed Real-Time Zip for .NET</a> when they need advanced Zip and streaming compression capabilities with professional support. </td></tr></tbody></table><br><br>DotNetZip works on PCs with the full .NET Framework, and also runs on mobile devices that use the .NET Compact Framework.  Create and read zip files in VB, C#, or any .NET language, or any scripting environment.  DotNetZip supports these scenarios:<br>- a Silverlight app that dynamically creates zip files.<br>- an ASP.NET app that dynamically creates ZIP files and allows a browser to download them<br>- a Windows Service that periodically zips up a directory for backup and archival purposes<br>- a WPF program that modifies existing archives - renaming entries, removing entries from an archive, or adding new entries to an archive<br>- a Windows Forms app that creates AES-encrypted zip archives for privacy of archived content.<br>- a SSIS script that unzips or zips<br>- An administrative script in PowerShell or VBScript  that performs backup and archival.<br>- a WCF service that receives a zip file as an attachment, and dynamically unpacks the zip to a stream for analysis<br>- an old-school ASP (VBScript) application that produces a ZIP file via the COM interface for DotNetZIp<br>- a Windows Forms app that reads or updates ODS files<br>- creating zip files from stream content, saving to a stream, extracting to a stream, reading from a stream<br>- creation of self-extracting archives.<br><br>If all you want is a better DeflateStream or GZipStream class to replace the one that is built-into the .NET BCL, DotNetZip has that, too.  DotNetZip's DeflateStream and GZipStream are available in a standalone assembly, based on a .NET port of Zlib.  These streams support compression levels and deliver much better performance than the built-in classes.  There is also a ZlibStream to complete the set (RFC 1950, 1951, 1952). <br><br>And the price for all this: <i>totally FREE</i>.<br><br><b>Example Usage</b><br>Here's some C# code that creates a zip file.<br><pre> using (ZipFile zip = new ZipFile())
+ {
+     // add this map file into the "images" directory in the zip archive
+     zip.AddFile("c:\\images\\personal\\7440-N49th.png", "images");
+     // add the report into a different directory in the archive
+     zip.AddFile("c:\\Reports\\2008-Regional-Sales-Report.pdf", "files");
+     zip.AddFile("ReadMe.txt");
+     zip.Save("MyZipFile.zip");
+ }
+</pre><br><br>Here is some VB code that unpacks a zip file (extracts all the entries):<br><pre>  Dim ZipToUnpack As String = "C1P3SML.zip"  
+   Dim TargetDir As String = "C1P3SML"  
+   Console.WriteLine("Extracting file {0} to {1}", ZipToUnpack, TargetDir)   
+   Using zip1 As ZipFile = ZipFile.Read(ZipToUnpack)   
+       AddHandler zip1.ExtractProgress, AddressOf MyExtractProgress   
+       Dim e As ZipEntry   
+       ' here, we extract every entry, but we could extract    
+       ' based on entry name, size, date, etc.   
+       For Each e In zip1   
+           e.Extract(TargetDir, ExtractExistingFileAction.OverwriteSilently)   
+       Next  
+   End Using  
+</pre><br><br>More code:
+<ul><li><a href="http://dotnetzip.codeplex.com/wikipage?title=Examples&referringTitle=Home">See the examples</a> , for VB, C#, Powershell, and so on. </li>
+<li><a href="http://www.codeguru.com/csharp/csharp/cs_data/xml/article.php/c16311/">Read ODS files in C# (external article)</a> </li>
+<li><a href="http://www.4guysfromrolla.com/articles/092910-1.aspx">Creating a zip in ASP.NET (external article by Scott Mitchell)</a></li>
+<li><a href="http://duncansutcliffe.wordpress.com/2010/04/14/unzipping-and-zipping-files-in-ssis/">Use DotNetZip in SSIS (external blog)</a></li></ul>
+
+<h2>More Information</h2>
+DotNetZip is a 100% managed code library that can be used in any .NET application - Console, Winforms, WPF, ASP.NET, Sharepoint, Web services apps, and so on.  New for v1.9.1.6: Silverlight.  It can also be used from scripting environments or COM-capable environments like Powershell scripts, VBScript, VBA, VB6, PHP, Perl, Javascript, and more.  Whatever environment it is used from, DotNetZip produces zip files that are fully interoperable with Windows Explorer, as well as Java applications, apps running on Linux. <br><br>It is designed to be simple and easy to use. DotNetZip is packaged as a single DLL, about 400k in size. It has no third-party dependencies. It is Medium Trust, so can be used on most hosters. Get zipping just by referencing the DLL.  The library supports zip passwords, Unicode, ZIP64, stream input and output, AES encryption, multiple compression levels, self-extracting archives, spanned archives, and more.<br><br>Click this link for information on <a href="http://dotnetzip.codeplex.com/wikipage?title=Getting-Started&referringTitle=Home">Getting Started with DotNetZip in Visual Studio</a>.<br><br><br>The release includes the library, as well as some sample applications (with source) showing how to use the library.  This is a look at the WinForms sample app that creates and zip files.  It serves as my free replacement for the $29 WinZip tool:<br><img src="./DotNetZip Library - Home_files/Download(1)" alt="CropperCapture[19].png" title="CropperCapture[19].png"><br><br>If you find DotNetZip useful, consider donating.  I am <a href="http://cheeso.members.winisp.net/DotNetZipDonate.aspx">accepting donations</a>. <br><br><a href="http://dotnetzip.codeplex.com/wikipage?title=Details&referringTitle=Home">Background and Details</a><br><br>
+<h2>Frequently Asked Questions</h2>
+<b>How does this Zip Library work?</b><br>DotNetZip is packaged as a single DLL, a single assembly.  It is fully managed code, written in C#, and provides support for reading and writing Zip archive files and streams.  The main type is ZipFile, featuring methods like Add(), Extract() and Save(). There are string and int indexers for the entries of the ZipFile.  There are properties for things like password protection, unicode and codepage support, and ZIP64 behavior.   And there are progress events for Reading, Saving, and Extracting.<br><br><b>What do I need, in order to be able to create and read zip files from within my application using this library?</b><br>To use the zip capability in your applications, you need to be using the .NET Framework 2.0 or later, and you need the DotNetZip Devkit assembly. You do not need to download the sourcecode of DotNetZip in order to use it.  You can simply download the binary. <br><br>You can use the Zip library from any application, whether a console application, a Windows-Forms application, a server-based application like an ASP.NET page, a smart-device app, a Windows Service, a Silverlight app, or something else.  You can use C#, VB.NET, COBOL.NET, IronPython, IronRuby, F#, or any other .NET language.  You can also use COM environments, like ASP pages, Javascript, PHP, and others. To build your application, you can use the full version of Visual Studio, or one of the Visual Studio Express tools, or just a text editor. <br><br><b>What if I just want to use the graphical tool?</b><br>No problem.  Just download the Utils zip or MSI from the latest releases tab, and you will get an easy-to-use fully-functional ZIP creation and extraction tool, a free functional-equivalent replacement for WinZip.  It supports all the DotNetZip capability, like SFX, AES, ZIP64, arbitrary Code Pages, Unicode, zip comments, file and entry selection, spanned or segmented zips, and more. <br><br><b>What do I need to build this library from the source?</b><br>You need the .NET Framework SDK v3.5, or later; or, Visual Studio 2008 or later.  While the library is usable by .NET 2.0 and later, to build it you need .NET 3.5 or later.  This is because the source code uses features that were introduced in the C# v3.0 compiler, vars and array initializers and so on.   The .NET 3.5 SDK is available <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=e6e1c3df-a74f-4207-8586-711ebe331cdc&DisplayLang=en">here</a>.   I don't know if the library will build in Visual C# Express 2008; I never tried it.  It should. <br><br><b>Is this thing supported on Mono/Linux?</b><br>It's not supported at all.  But, it apparently works on Mono/Ubuntu.  I don't test it that way.  If you'd like to volunteer, let me know. <br><br><b>How big is the library?</b><br>As of version 1.9, the Ionic zip DLL is about 400k in size.  The capability to produce self-extracting archives is optional, and amounts to about 200k of that.  (there is a "Reduced" build of the library in the Devkit download, for those who are counting kilobytes).   The Compact-Framework version of the library is about 130k.   There is just one DLL.  There is no other pre-requisite. <br><br><b>Why would you want to produce yet another Zip Library?</b><br>There are a number of options in the .NET world for manipulating zip files.  Some are commercial libraries, some are open-source.  You can even shoe-horn the System.IO.Packaging API, which is included in .NET 3.0, into a zip library.  But there are tradeoffs for all of them.  Some people are willing to give up commercial support for a lower price.  Some people don't like the GPL.  Some of those other packages are complex to use for zip files.  Some of them don't have enough features (Eg, AES encryption, ZIP64, zip spanning).  Some are too slow.   What I found is that most people want something simple and easy to use, that works well, has good features, compresses effectively and fast, and is the right price.  DotNetZip is that option.   It's fast, it's simple, it's free.<br><br><b>Does this library make self-extracting zip files?</b> <br>Yes.  It can make self-extracting zip files or standard zip files.   The self-extracting archives can either be Windows (GUI) apps or command-line applications. The self-extractors require .NET 2.0 on the computer doing the extraction.<br><br><b>Does this library read self-extracting zip files?</b> <br>Yes.  DotNetZip can read self-extracting archives (SFX) generated by WinZip, and WinZip can read SFX files generated by DotNetZip.   <br><br><b>Are the zip files this library makes compatible with the Java.util.zip classes in the Java class library?</b> <br>Yes.  This library makes standard zip files.  If you use some advanced features not supported by the built-in Java library, like AES encryption or ZIP64 or spanning, then the zip files won't be readable by Java.  This is a shortcoming in the Java library, not in DotNetZip. <br><br><b>If I create a zipfile with this library, can I open it from within a Java/PHP/Python/C/Perl application? From within WinRar/WinZIP?</b><br>Yes.  This library makes standard zip files, so anything that can read and write zip files, on any platform, can work with zipfiles generated from this library. In Java, you would use the java.util.zip library. In Python, you would use the zipfile module.  Not all languages and environments support all ZIP features. For example, currently the Java library does not do ZIP64, and the zipfile module in Python does not support zipfile comments, while DotNetZip can create and read zip archives using those features.  When mixing platforms, you need to be careful with interop testing.  If you don't know what these features are, you probably don't need them and you won't run into interop problems. <br><br><b>If I create a zipfile with a java/PHP/Python/C/Perl application, or with WinRar/WinZip/7zip, can I open it from within a .NET application, using this library?</b><br>Yes.  This library reads compliant zip files. <br><br><b>Can I use the library from within VBScript, PHP, Perl, Javascript, or VB6?</b><br>Yes, the library is ComVisible.   A PHP script running on Windows can use the library to dynamically create an AES-encrypted zip file for download, for example.  A .vbs script can extract files.  An ASP page can create a zip file.  There is sample code in the help file, and in the source distribution, covering all these. <br><br><b>Can I use Windows Explorer to open the zip files that this library creates, and vice versa?</b><br>Yes.  This library reads and writes standard zip files.  If you use extensions to the ZIP spec not supported by Windows, like ZIP64 or spanning or AES encryption, Windows Explorer will not be able to extract the files. <br><br><b>Can I use the Archive Utility on MacOS to or Stuffit open the zip files that this library creates, and vice versa?</b><br>Yes.  This library reads and writes standard zip files.  You may have to follow a format convention for the zip file. <br><br><b>Does the library work with applications that depend on the .NET Compact Framework?</b><br>Yes.  DotNetZip is built for the .NET Compact Framework (v2.0) as well as for the regular .NET Framework.  You can build a Smart Device application in Visual Studio 2008, that uses the capabilities of DotNetZip.  <br><br><b>Is there a version of the library built to work with Silverlight applications?</b><br>Yes.  New for v1.9.1.6, in July 2011, DotNetZip is built for Silverlight.  <br><br><b>Does the library support zero-length zip entries, zipfile comments, zip entry comments, zipping up empty directories, recursive directory traversal,  zipping up selected files by filename (with wildcards), and password-protecting entries?</b> <br>Yes.  <br><br><b>Does the library handle ZIP64?</b><br>Yes. The original ZIP specification allowed up to 65535 entries in a zip archive, and archive and entry sizes up to 4.2g.  The ZIP64 extensions raise those restrictions, at the expense of compatibility and interoperability.  DotNetZip can read or write "standard" zip files or ZIP64 zip files. <br><br><b>Does the library do AES 128 or 256 encryption?</b><br>Yes.  DotNetZip's AES encryption is compatible with the WinZip AES-encryption extension to the PKWare ZIP specification.  DotNetZip uses the same FIPS-197 compliant data format and approach.  If you create an AES-encrypted ZIP file with DotNetZip, you will be able to view it and extract it in WinZip, and vice versa. Also, DotNetZip's AES will work with any other tool that is compatible with WinZip.  NB: If you open an AES-encrypted ZIP file in Windows Explorer, whether generated by DotNetZip or some other tool, you will be able to view the list of files, but you won't be able to extract entries. Also, AES encryption is not available in Silverlight. <br><br><b>Can an application that uses this library make a self-extracting, AES-encrypted, Unicode, ZIP64 zip file?</b> <br>Yes, if you want to, you can do that.<br><br><b>Does this library support any compression algorithm other than deflate?</b><br>No.  Entries are either Stored or Deflated. <br><br><b>Can the library read or create "Split" zip files?</b><br>Yes. This was added in v1.9. <br><br><b>Does this library use System.IO.Compression.DeflateStream for the DEFLATE capability?</b><br>No.  In earlier versions, it did.  But the DeflateStream built-into the .NET Framework BCL exhibits anomalous compression behavior on previously compressed data, like mp3 or jpg files.  DotNetZip includes a managed compression library, based on ZLIB.  It's fast, fully DEFLATE compliant, and it compresses better than the built in version!  And, the DeflateStream that is included in DotNetZip is available for any application to use, under the same terms as the rest of the DotNetZip library.  <br><br><b>Why would a developer not just use the Packaging APIs included in the .NET Framework 3.0?</b><br>The Packaging APIs are optimized for producing .docx files and .xlsx files.  This library is generally simpler and faster for creating or reading plain, generic zipfiles.  This library supports ZIP features like ZIP64 or AES or split archives; the Packaging API does not.  DotNetZip provides nice features like progress events and file selectors; the Packaging API does not.<br><br><b>Why would a developer not just use the ZIP capability that is built into the Windows Shell?</b><br>For the same kinds of reasons.  The programming model for managed code apps is much nicer with DotNetZip, and DotNetZip is faster.  The advanced features, for things like selecting entries from the zip file, or AES-encryption, or self-extracting archives, are not available using the shell library.<br><br><b>Does the library support reading or writing encrypted or password protected zip files?</b><br>Yes, this library helps applications read and write zip files that use passwords to protect the entries in the zip archive.  Either PKZIP ("weak") encryption or WinZip-compatible AES encryption.<br><br><b>Does the library support the BZIP2 compression method within ZIP files?</b><br>Yes. This feature is new for v1.9.1.6.<br><br><br><b>Can Windows Explorer ("compressed folders") read and extract the zip files created by this library if the zip has password protection?</b><br>Yes.  It just works.<br><br><b>Can I use the DotNetZip library to read .docx files, .xslx files?</b><br>Yes. They are just zip files.  Some people use DotNetZip on Mono to produce or edit .xlsx or .docx files.  Keep in mind, the Packaging APIs included in .NET 3.0 are optimized for producing .docx files and .xlsx files. <br><br><b>Does the library support Unicode filenames and comments?</b><br>Yes, the library can create and read zip files that have Unicode (UTF-8) filenames and comments. You can also specify arbitrary code pages when reading or writing zipfiles. But, Windows Explorer does not support UTF-8 encoded zip files. To read the zip you create, you will have to use a tool or library that supports unicode, such as WinRar, DotNetZip, etc.<br><br><b>Can the library be used to read a zip file that has entries with filenames containing Chinese characters, produced by WinRAR?</b><br>Yes.  To do this you would specify the "big5" code page (cp 950) when reading the zip.   In addition to Chinese, it can handle any code page.<br><br><b>What about reading and writing zip files with other languages and code pages?  Portugese?   Hebrew?  Arabic?  Greek?  Cyrillic?  Norwegian?  Finnish?  etc?</b><br>Yes.  Just specify the appropriate code page when reading or writing the zip archive.  <br><br><b>Can Windows Explorer ("compressed folders") read the zip files created by this library if the zip has entries with Unicode-encoded filenames?</b><br>No.  But that is a limitation of Windows XP and Windows Vista.  It is not a limitation of this library. <br><br><b>Can DotNetZip read or write RAR files?</b><br>No.  DotNetZip does zip files. <br><br><b>Can WinRAR read the zip files produced by DotNetZip?</b><br>Yes.  But remember, DotNetZip does not produce RAR files. DotNetZip produces ZIP files.  WinRAR can read ZIP and RAR files, I believe.<br><br><b>Is there documentation for the library?</b><br>Yes, there is a CHM file in MSDN helpfile format, generated from the xml comments in the code. All the public interfaces are thoroughly documented.  There are tons of code examples in the doc.  You can <a href="http://cheeso.members.winisp.net/DotNetZipHelp/frames.htm">view the CHM online</a><br><br><b>I cannot view the CHM documentation.  The error is: "This program cannot display the webpage."  or, "The address is invalid." Is there an error with the chm file?</b><br>No, there is no problem with the CHM file.  You have likely encountered a problem with Windows protection of files downloaded from less trusted locations. To view the chm file, within Windows Explorer, right-click on the CHM file, select properties, and Unblock it (button in lower part of properties window).<br><br><b>Does the library support zipping to a stream?  Or unzipping from a stream?</b><br>Yes, you can zip up files and Save the zip archive to a stream.  As well you can Read a zip archive from an open stream - I use this for embedded resources in apps:  I call GetManifestResourceStream(), and then unzip that resource.   Reading and writing streams complements the capability of being able to Save to a plain file or read from a plain file. The Save-to-a-stream capability allows you to write a zip archive out to, for example, the ASP.NET Response.Output stream, without creating an intermediate file. Very nice for ASP.NET applications.<br><br><b>Ok, the library can write a zip archive to a stream, and read a zip from a stream, But... can the library add an entry to a zipfile, reading content from a stream?  can the library unzip a single entry into a stream? Can an application read an entry as a stream?</b><br>Yes. Yes. Yes. Unlike some other libraries, in most cases DotNetZip handles the streaming; your application does not need to implement a Read/Write data pump.  The application needs only to open the streams. Using the stream support, you could, for example, open a zip archive, and then modify the files in the archive, and Save out to a Response.OutputStream in ASP.NET, without ever writing a file to the disk.  All the zip file content can be manipulated in memory (using MemoryStream for example). <br><br><b>Does this library allow removal of entries from zip files, or updating of entries in zip files?</b><br>Yes.<br><br><b>Do I have to write programs to take advantage of this thing?  or is there some other way I can take advantage of the DotNetZip?</b><br>Typically people will embed this DLL into an application.  But, the DotNetZip downloads includes a package of utility applications: A Windows GUI tool, and a set of command-line tools that utilize the library, that you can use out of the box to zip and unzip.  I drop these in my own bin directory and it allows me to zip and unzip from the command line or from batch files.  Also, you can take advantage of the DotNetZip library from within Powershell, if that is your bag.  Creating or extracting zips within a script is pretty handy. <br><br><b>Can I embed the source for DotNetZip into my own project?</b><br>Yes - that's allowed by the license.  But you may want to think about just redistributing the binary DLL - it is a much easier option. <br><br><b>Can I distribute the binary DLL with my own project?</b><br>Yes - that's allowed by the license.<br><br><b>What's the mainstream approach for using DotNetZip in a 3rd party app?</b><br>The mainstream approach is to distribute the binary DLL with your own app.<br><br><b>What if I want to use DotNetZip in my app, but I don't want to distribute it as a separate DLL?</b><br>You have options.  The most mainstream and generally easiest way to embed DotNetZip into your application is to redistribute the DLL.  But if you don't want to do that, there are alternatives. One option is to embed the source for DotNetZip into your own project.  This may seem like the obvious approach, but it is probably not what you want, unless you <i>really need</i> to modify the source of DotNetZip.  A better approach is to merge the DLL into your EXE, with ILMerge:  <a href="http://www.microsoft.com/downloads/details.aspx?familyid=22914587-b4ad-4eae-87cf-b14ae6a939b0&displaylang=en">http://www.microsoft.com/downloads/details.aspx?familyid=22914587-b4ad-4eae-87cf-b14ae6a939b0&amp;displaylang=en</a>  This works with your app regardless of what language it uses, whether it is a Winforms app, a WPF app, a service, etc.  A final option is to embed the DLL as a resource into your application, and provide an AssemblyResolve event that reads the DLL from the resource stream.  Which option you choose depends on your requirements.</div><div class="ClearBoth"></div>
+            </div>
+        
+                <p>Last edited <span class="smartDate" title="1/17/2013 1:08:17 AM" localtimeticks="1358413697">Jan 17, 2013 at 1:08 AM</span> by <a id="wikiEditByLink" href="http://www.codeplex.com/site/users/view/Cheeso">Cheeso</a>, version 144</p>
+            
+    </div>
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#deleteWikiHyperLink').click(function () {
+                OpenDialog('#DeleteWikiPagePanel', true, '30em');
+            });
+            $('#DeleteButton').click(function () {
+                OpenDialog('#DeleteWikiPagePanel', false);
+                CodePlex.UpdateProgress.show();
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'http://dotnetzip.codeplex.com/',
+                    data: {title: $('#WikiTitle').val()},
+                    success: function (data) {
+                        CodePlex.UpdateProgress.hide();
+                        window.location = data;
+                    },
+                    error: function (data) {
+                        CodePlex.UpdateProgress.hide();
+                    }
+                });
+            });
+            $('#CancelButton').click(function () {
+                OpenDialog('#DeleteWikiPagePanel', false);
+            });
+            
+            
+        });
+    </script>
+</div>
+
+        
+	<div id="right_sidebar">
+        
+
+<input name="" type="text" maxlength="500" id="wiki_search" title="Search Wiki and Documentation" class="EmptyTextBox"><a id="SearchButton" class="wiki_magnify" href="http://dotnetzip.codeplex.com/#" title="Search Wiki and Documentation"></a>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $('#wiki_search').keypress(function (e) {
+            if (e.keyCode == 13) {
+                wikiSearch();
+                return false;
+            }
+        });
+
+        $('#SearchButton').click(function () {
+            wikiSearch();
+            return false;
+        });
+
+        $('#wiki_search').promptBox('Search Wiki & Documentation');
+
+    });
+    function setWikiCommentTextBoxFocus() {
+        $('#Comment').focus();
+        return false;
+    }
+
+    function wikiSearch() {
+        var $textbox = $('#wiki_search');
+        if($textbox.attr('dirty') != 'true')
+            return;
+        var searchText = encodeURIComponent(jQuery.trim($textbox.val()));
+        if(searchText != null & searchText.length > 0)
+            window.location.href = 'http://dotnetzip.codeplex.com/wiki/search?tab=Home&SearchText=' + searchText;
+    }
+
+</script><a id="download_button" href="http://dotnetzip.codeplex.com/downloads/get/258012">download</a>
+	<div id="current_rating">
+        <table>
+            <tbody><tr>
+    			<th><span class="rating_header">current</span></th>
+    			<td>
+                    v1.9.1.8 DotNetZip - Latest Stable
+    			</td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">date</span></th>
+    			<td><span class="smartDate full" title="7/11/2011 11:00:00 AM" localtimeticks="1310407200">Mon Jul 11, 2011 at 11:00 AM</span></td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">status</span></th>
+    			<td>Stable</td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">downloads</span></th>
+    			<td>297,888</td>
+            </tr>
+            <tr>
+    			<th><span class="rating_header">rating</span></th>
+                <td>
+                    <span id="releaseRatingContainer" title="4.3 star rating"><span id="releaseRating_Star_0" class="RatingStar FilledRatingStar" d:rating="1" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_1" class="RatingStar FilledRatingStar" d:rating="2" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_2" class="RatingStar FilledRatingStar" d:rating="3" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_3" class="RatingStar FilledRatingStar" d:rating="4" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseRating_Star_4" class="RatingStar HalfRatingStar" d:rating="5" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="releaseratingName"></span><input id="releasecurrentRating" type="hidden" value="4.277778"></span>
+                    <span class="right">
+                        36 ratings
+                    </span>
+                    <br>
+                    
+                    <a href="http://dotnetzip.codeplex.com/releases/view/68268?RateReview=true">Review this release</a>
+                    
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+	<div id="recent_reviews">
+	    <h2>Most Helpful Reviews</h2>
+        
+            <p class="review"><span id="RatingContainer" title="2 star rating"><span id="Rating_Star_0" class="RatingStar FilledRatingStar" d:rating="1" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_1" class="RatingStar FilledRatingStar" d:rating="2" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_2" class="RatingStar EmptyRatingStar" d:rating="3" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_3" class="RatingStar EmptyRatingStar" d:rating="4" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_4" class="RatingStar EmptyRatingStar" d:rating="5" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="ratingName"></span><input id="currentRating" type="hidden" value="2"></span>I have been using this library for several months. I tried to zip both large MS Access files (*.mdb), approx. 1.5 GB and medium size... <a href="http://dotnetzip.codeplex.com/releases/view/68268#ReviewsAnchor">(more)</a></p>
+        
+            <p class="review"><span id="RatingContainer" title="1 star rating"><span id="Rating_Star_0" class="RatingStar FilledRatingStar" d:rating="1" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_1" class="RatingStar EmptyRatingStar" d:rating="2" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_2" class="RatingStar EmptyRatingStar" d:rating="3" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_3" class="RatingStar EmptyRatingStar" d:rating="4" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="Rating_Star_4" class="RatingStar EmptyRatingStar" d:rating="5" onclick="MvcValidation_ClearErrors(&#39;Rating&#39;);">&nbsp;</span><span id="ratingName"></span><input id="currentRating" type="hidden" value="1"></span>compression fails on some files</p>
+        
+        <a id="view_all_reviews" href="http://dotnetzip.codeplex.com/releases/view/68268#ReviewsAnchor">View all reviews</a>
+        <div class="clear"></div>
+    </div>
+
+
+<div id="LoungeAdsDiv">
+	<div id="Ad1" data-type="ad" data-publisher="" data-zone="ron" style="width: 300px; height: 250px; margin: 0px auto;" data-site="C-dotnetzip" data-format="300x250" data-tags="ZIP%2ccompression%2cDotNetZip%20Library%2cdotnetzip%2cLibrary%2cC%23%2cARCHIVE%2cIO%2cZipLib%2c%2a">
+	</div>
+    <p id="adzerk_by" class="LoungeAdsBottomLinks">
+        <a href="http://developermedia.com/" target="_blank">Ads by Developer Media</a>
+        
+    </p>
+</div>
+<script type="text/javascript">
+    function _dmBootstrap(file) {
+        var _dma = document.createElement('script');
+        _dma.type = 'text/javascript';
+        _dma.async = true;
+        _dma.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + file;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_dma);
+    }
+    function _dmFollowup(file) { if (typeof DMAds === 'undefined') _dmBootstrap('cdn2.DeveloperMedia.com/a.min.js'); }
+    (function () { _dmBootstrap('cdn1.DeveloperMedia.com/a.min.js'); setTimeout(_dmFollowup, 2000); })();
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#PageActivity .Link').click(function () {
+                var val = $(this).attr('d:value');
+                $.post('http://dotnetzip.codeplex.com/stats/getActivity',
+                    { period: val },
+                    function (data) {
+                        $('#PageActivity span').hide();
+                        $('#PageActivity .Link').show();
+                        $('#Page' + val + 'Label').show();
+                        $('#Page' + val + 'Link').hide();
+                        $('#pageViews').text(data.PageViews);
+                        $('#visits').text(data.Visits);
+                        $('#downloads').text(data.Downloads);
+                    }, 'json');
+                return false;
+            });
+        });
+</script>
+<div id="activity">
+	<h2>activity</h2>
+
+	<div class="clear"></div>
+
+    <table>
+	    <tbody><tr>
+            <th class="t_heading">page views</th>
+            <th class="t_heading">visits</th>
+            <th class="t_heading">downloads</th>
+	    </tr>
+		<tr>
+			<td><span id="pageViews">14842</span></td>
+			<td><span id="visits">5815</span></td>
+			<td><span id="downloads">2176</span></td>
+		</tr>
+    </tbody></table>
+
+	<ul id="PageActivity"> 
+		<li>Days: </li>
+		<li>
+		    <span id="Page7Label">7</span>
+            <a id="Page7Link" href="http://dotnetzip.codeplex.com/#" class="Link" style="display:none;" d:value="7">7</a>
+		</li>
+		<li>
+		    <span id="Page30Label" style="display:none;">30</span>
+            <a id="Page30Link" href="http://dotnetzip.codeplex.com/#" class="Link" d:value="30">30</a>
+		</li>
+		<li>
+		    <span id="Page-1Label" style="display:none;">All</span>
+            <a id="Page-1Link" href="http://dotnetzip.codeplex.com/#" class="Link" d:value="-1">All</a>
+		</li>
+        <li id="activity_details"><a href="http://dotnetzip.codeplex.com/stats">Details</a></li>
+	</ul>
+
+</div>
+
+    </div>
+
+        
+                
+                <div class="clear"></div>
+                
+                <div id="footer">
+                    <div class="row">
+                        <hr>
+                        <ul>
+                            <li>© 2006-2014 Microsoft</li>
+                            <li><a href="http://www.codeplex.com/site/help">Get Help</a></li>
+                            <li><a href="http://dotnetzip.codeplex.com/site/legal/privacy">Privacy Statement</a></li>
+                            <li><a href="http://www.codeplex.com/site/legal/terms">Terms of Use</a></li>
+                            <li><a href="http://www.codeplex.com/site/legal/conduct">Code of Conduct</a></li>
+                            <li><a href="http://developermedia.com/" target="_blank">Advertise With Us</a></li>
+                            <li>Version 3.6.2014.20885</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all  ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-UpdateProgressPanel" style="display: none; z-index: 1000; outline: 0px; position: absolute;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-UpdateProgressPanel">&nbsp;</span><a href="http://dotnetzip.codeplex.com/#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="UpdateProgressPanel" class="loading_animation ui-dialog-content ui-widget-content" style="">
+                <div class="row">
+                    <h2 class="anim_h2">
+                        <span id="UpdateProgressText">Updating...</span>
+                        <span id="animatedLoadingIconContainer">
+                            <img id="animatedLoadingIcon" src="./DotNetZip Library - Home_files/loading_animation.gif" class="anim_img">
+                        </span>
+                    </h2>
+                </div>
+            </div><div class="ui-resizable-handle ui-resizable-n"></div><div class="ui-resizable-handle ui-resizable-e"></div><div class="ui-resizable-handle ui-resizable-s"></div><div class="ui-resizable-handle ui-resizable-w"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se" style="z-index: 1001;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004;"></div></div><script src="./DotNetZip Library - Home_files/broker-config.js"></script></body></html>

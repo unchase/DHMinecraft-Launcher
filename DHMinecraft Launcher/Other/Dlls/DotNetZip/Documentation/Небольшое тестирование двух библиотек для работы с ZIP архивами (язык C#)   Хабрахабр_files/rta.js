@@ -1,0 +1,1 @@
+crtg_content = ''; (function(){document.cookie = 'cto_rtt=' + escape(crtg_content) + '; path=/; expires=Sun, 25 May 2014 12:57:32 GMT; domain=habrahabr.ru';})();

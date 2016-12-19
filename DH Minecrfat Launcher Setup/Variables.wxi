@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ProductName="DHMinecraftLauncherSetup" ?>
+  <?define ProductVersion="1.0.0.0" ?>
+  <?define ProductCode="CB2062AC-964C-41D1-878B-377551E4A5AC"?>
+  <?define UpgradeCode="379A10E8-403E-4F47-AF19-6DA6C47052A0"?>
+  <?define Manufacturer="Lovecmuh"?>
+</Include>

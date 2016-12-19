@@ -1,0 +1,9 @@
+AdminHelp.rtf
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\AlphaBlendTextBox.dll
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.exe
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.exe.config
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.pdb
+GeneralHelp.rtf
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.dll
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.pdb
+D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.xml
