@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -48,9 +43,9 @@ namespace DHMinecraft_Launcher
         {
             try
             {
-                DownloadedFiles downloadedFiles = Utils.Deserialize<DownloadedFiles>(downloadedFilesJsonConfigurationUri, Encoding.UTF8);
-                this.formMainLauncher.allFilesWasDownloaded = true;
-                foreach (DownloadedFiles.DownloadedFile downloadedFile in downloadedFiles.downloadedFiles)
+                var downloadedFiles = Utils.Deserialize<DownloadedFiles>(downloadedFilesJsonConfigurationUri, Encoding.UTF8);
+                formMainLauncher.allFilesWasDownloaded = true;
+                foreach (var downloadedFile in downloadedFiles.downloadedFiles)
                 {
 
                     currLocation = currentProfile.gameDirectory + downloadedFile.localRelativePath;
@@ -66,7 +61,7 @@ namespace DHMinecraft_Launcher
                         catch (Exception ex)
                         {
                             MessageBox.Show("Ошибка при скачивании файла из " + downloadedFile.uri + ". Текст ошибки: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            this.formMainLauncher.allFilesWasDownloaded = false;
+                            formMainLauncher.allFilesWasDownloaded = false;
                             break;
                         }
                     }
@@ -76,11 +71,11 @@ namespace DHMinecraft_Launcher
                 if (Directory.Exists(tempLocation))
                     Directory.Delete(tempLocation, true);
 
-                buttonCloseForm.Enabled = this.formMainLauncher.allFilesWasDownloaded;
+                buttonCloseForm.Enabled = formMainLauncher.allFilesWasDownloaded;
             }
             catch (Exception ex)
             {
-                this.formMainLauncher.allFilesWasDownloaded = false;
+                formMainLauncher.allFilesWasDownloaded = false;
                 MessageBox.Show("Произошла ошибка при обновлении файлов: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -89,8 +84,8 @@ namespace DHMinecraft_Launcher
         //string MD5checksum = GetFileChecksum("c:\\myfile.exe", new MD5CryptoServiceProvider());
         private string GetFileChecksum(string filePath, HashAlgorithm algorithm)
         {
-            string result = string.Empty;
-            using (FileStream fs = File.OpenRead(filePath))
+            var result = string.Empty;
+            using (var fs = File.OpenRead(filePath))
             {
                 result = BitConverter.ToString(algorithm.ComputeHash(fs)).ToLower().Replace("-", "");
             }
@@ -111,7 +106,7 @@ namespace DHMinecraft_Launcher
                 webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
 
                 // переменная, которая должна содержать url адрес (делает так, чтобы она начиналась с http://)
-                Uri URL = urlAddress.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ? new Uri(urlAddress) : new Uri("http://" + urlAddress);
+                var URL = urlAddress.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ? new Uri(urlAddress) : new Uri("http://" + urlAddress);
 
                 if (!CheckURL(URL.ToString()))
                     throw new Exception("Файл " + urlAddress + "не существует.");
@@ -135,16 +130,16 @@ namespace DHMinecraft_Launcher
             }
         }
 
-        private static bool CheckURL(String url) 
+        private static bool CheckURL(string url) 
         { 
-            if(String.IsNullOrEmpty(url)) 
+            if(string.IsNullOrEmpty(url)) 
                 return false; 
             
-            WebRequest request = WebRequest.Create(url);
+            var request = WebRequest.Create(url);
             request.Proxy = new WebProxy();
             try 
             { 
-                HttpWebResponse res = request.GetResponse() as HttpWebResponse; 
+                var res = request.GetResponse() as HttpWebResponse; 
                 if (res.StatusDescription == "OK") 
                     return true; 
             } 
@@ -208,12 +203,12 @@ namespace DHMinecraft_Launcher
         {
             try
             {
-                DownloadedFiles downloadedFiles = Utils.Deserialize<DownloadedFiles>(downloadedFilesJsonConfigurationUri, Encoding.UTF8);
-                foreach (DownloadedFiles.DownloadedFile downloadedFile in downloadedFiles.downloadedFiles)
+                var downloadedFiles = Utils.Deserialize<DownloadedFiles>(downloadedFilesJsonConfigurationUri, Encoding.UTF8);
+                foreach (var downloadedFile in downloadedFiles.downloadedFiles)
                 {
                     if (File.Exists(currentProfile.gameDirectory + downloadedFile.localRelativePath) && GetFileChecksum(currentProfile.gameDirectory + downloadedFile.localRelativePath, new MD5CryptoServiceProvider()) != downloadedFile.md5CheckSum)
                     {
-                        this.formMainLauncher.allFilesWasDownloaded = false;
+                        formMainLauncher.allFilesWasDownloaded = false;
                         break;
                     }
 
@@ -221,10 +216,10 @@ namespace DHMinecraft_Launcher
             }
             catch (Exception ex)
             {
-                this.formMainLauncher.allFilesWasDownloaded = false;
+                formMainLauncher.allFilesWasDownloaded = false;
                 MessageBox.Show("Произошла ошибка при проверке файлов: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.Close();
+            Close();
         }
 
         private void buttonCheckAndDownloadFiles_Click(object sender, EventArgs e)

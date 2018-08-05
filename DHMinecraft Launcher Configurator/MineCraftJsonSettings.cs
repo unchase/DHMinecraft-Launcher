@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace DHMinecraft_Launcher_Configurator
 {
@@ -148,9 +143,9 @@ namespace DHMinecraft_Launcher_Configurator
                 /// </summary>
                 public Native()
                 {
-                    this.windows = MineCraftConfiguratorSettings._defaultJsonLibraryNativeWindows;
-                    this.osx = MineCraftConfiguratorSettings._defaultJsonLibraryNativeOsx;
-                    this.linux = MineCraftConfiguratorSettings._defaultJsonLibraryNativeLinux;
+                    windows = MineCraftConfiguratorSettings._defaultJsonLibraryNativeWindows;
+                    osx = MineCraftConfiguratorSettings._defaultJsonLibraryNativeOsx;
+                    linux = MineCraftConfiguratorSettings._defaultJsonLibraryNativeLinux;
                 }
 
                 /// <summary>
@@ -160,8 +155,8 @@ namespace DHMinecraft_Launcher_Configurator
                 public Native(string windows)
                 {
                     this.windows = windows;
-                    this.osx = MineCraftConfiguratorSettings._defaultJsonLibraryNativeOsx;
-                    this.linux = MineCraftConfiguratorSettings._defaultJsonLibraryNativeLinux;
+                    osx = MineCraftConfiguratorSettings._defaultJsonLibraryNativeOsx;
+                    linux = MineCraftConfiguratorSettings._defaultJsonLibraryNativeLinux;
                 }
 
                 /// <summary>
@@ -189,13 +184,13 @@ namespace DHMinecraft_Launcher_Configurator
             public Library(string name, string comment, string[] checksums)
             {
                 this.name = name;
-                this.url = MineCraftConfiguratorSettings._defaultJsonLibraryUrl;
-                this.serverreq = MineCraftConfiguratorSettings._defaultJsonLibraryClientreq;
-                this.clientreq = MineCraftConfiguratorSettings._defaultJsonLibraryServerreq;
+                url = MineCraftConfiguratorSettings._defaultJsonLibraryUrl;
+                serverreq = MineCraftConfiguratorSettings._defaultJsonLibraryClientreq;
+                clientreq = MineCraftConfiguratorSettings._defaultJsonLibraryServerreq;
                 this.comment = comment;
                 this.checksums = checksums;
-                this.rules = new Rule[1];
-                this.natives = new Native[1];
+                rules = new Rule[1];
+                natives = new Native[1];
             }
 
             /// <summary>
@@ -209,12 +204,12 @@ namespace DHMinecraft_Launcher_Configurator
             {
                 this.name = name;
                 this.url = url;
-                this.serverreq = MineCraftConfiguratorSettings._defaultJsonLibraryClientreq;
-                this.clientreq = MineCraftConfiguratorSettings._defaultJsonLibraryServerreq;
+                serverreq = MineCraftConfiguratorSettings._defaultJsonLibraryClientreq;
+                clientreq = MineCraftConfiguratorSettings._defaultJsonLibraryServerreq;
                 this.comment = comment;
                 this.checksums = checksums;
-                this.rules = new Rule[1];
-                this.natives = new Native[1];
+                rules = new Rule[1];
+                natives = new Native[1];
             }
 
             /// <summary>
@@ -300,15 +295,15 @@ namespace DHMinecraft_Launcher_Configurator
         /// <param name="releaseTime">Время создания конфигурационного файла.</param>
         public MineCraftJsonSettings(Library library, string time, string id, string releaseTime)
         {
-            this.minecraftArguments = MineCraftConfiguratorSettings._defaultJsonMinecraftArguments;
-            this.libraries = new Library[1];
-            this.libraries[0] = library;
-            this.mainClass = MineCraftConfiguratorSettings._defautJsonMainClass;
-            this.minimumLauncherVersion = MineCraftConfiguratorSettings._defaultJsonMinimumLauncherVersion;
+            minecraftArguments = MineCraftConfiguratorSettings._defaultJsonMinecraftArguments;
+            libraries = new Library[1];
+            libraries[0] = library;
+            mainClass = MineCraftConfiguratorSettings._defautJsonMainClass;
+            minimumLauncherVersion = MineCraftConfiguratorSettings._defaultJsonMinimumLauncherVersion;
             this.time = time;
             this.id = id;
-            this.type = MineCraftConfiguratorSettings._defaultJsonType;
-            this.processArguments = MineCraftConfiguratorSettings._defaultJsonProcessArguments;
+            type = MineCraftConfiguratorSettings._defaultJsonType;
+            processArguments = MineCraftConfiguratorSettings._defaultJsonProcessArguments;
             this.releaseTime = releaseTime;
         }
 
@@ -321,14 +316,14 @@ namespace DHMinecraft_Launcher_Configurator
         /// <param name="releaseTime">Время создания конфигурационного файла.</param>
         public MineCraftJsonSettings(Library[] libraries, string time, string id, string releaseTime)
         {
-            this.minecraftArguments = MineCraftConfiguratorSettings._defaultJsonMinecraftArguments;
+            minecraftArguments = MineCraftConfiguratorSettings._defaultJsonMinecraftArguments;
             this.libraries = libraries;
-            this.mainClass = MineCraftConfiguratorSettings._defautJsonMainClass;
-            this.minimumLauncherVersion = MineCraftConfiguratorSettings._defaultJsonMinimumLauncherVersion;
+            mainClass = MineCraftConfiguratorSettings._defautJsonMainClass;
+            minimumLauncherVersion = MineCraftConfiguratorSettings._defaultJsonMinimumLauncherVersion;
             this.time = time;
             this.id = id;
-            this.type = MineCraftConfiguratorSettings._defaultJsonType;
-            this.processArguments = MineCraftConfiguratorSettings._defaultJsonProcessArguments;
+            type = MineCraftConfiguratorSettings._defaultJsonType;
+            processArguments = MineCraftConfiguratorSettings._defaultJsonProcessArguments;
             this.releaseTime = releaseTime;
         }
 
@@ -347,8 +342,8 @@ namespace DHMinecraft_Launcher_Configurator
         public MineCraftJsonSettings(string minecraftArguments, Library library, string mainClass, string minimumLauncherVersion, string time, string id, string type, string processArguments, string releaseTime)
         {
             this.minecraftArguments = minecraftArguments;
-            this.libraries = new Library[1];
-            this.libraries[0] = library;
+            libraries = new Library[1];
+            libraries[0] = library;
             this.mainClass = mainClass;
             this.minimumLauncherVersion = minimumLauncherVersion;
             this.time = time;
@@ -395,14 +390,14 @@ namespace DHMinecraft_Launcher_Configurator
         /// <returns>Возвращает список полных путей к библиотекам minecraft.</returns>
         public string[] ParseLibraries(string appData, string minecraftRootFolder, string currentServerName, string librariesFolder)
         {
-            string[] results = new string[this.libraries.Length];
-            for (var i = 0; i < this.libraries.Length; i++)
+            var results = new string[libraries.Length];
+            for (var i = 0; i < libraries.Length; i++)
             {
-                string tempName = this.libraries[i].name;
-                string[] tempNameSplit = tempName.Split(':');
+                var tempName = libraries[i].name;
+                var tempNameSplit = tempName.Split(':');
                 tempNameSplit[0] = tempNameSplit[0].Replace('.', '\\');
-                string filename = tempNameSplit[1] + "-" + tempNameSplit[2] + ".jar";
-                foreach (string part in tempNameSplit)
+                var filename = tempNameSplit[1] + "-" + tempNameSplit[2] + ".jar";
+                foreach (var part in tempNameSplit)
                 {
                     results[i] += "\\" + part;
                 }
@@ -426,7 +421,7 @@ namespace DHMinecraft_Launcher_Configurator
         /// <returns>Возвращает измененную строку с аргументами</returns>
         public string ParseArguments(string appData, string userLogin, string sessionID, string launcherVersion, string minecraftRootFolder, string currentServerName, string assetsFolder)
         {
-            string result = this.minecraftArguments;
+            var result = minecraftArguments;
             result = result.Replace("${auth_player_name}", "\"" + userLogin + "\"");
             result = result.Replace("${auth_session}", "\"" + sessionID + "\"");
             result = result.Replace("${version_name}", "\"" + launcherVersion + "\"");

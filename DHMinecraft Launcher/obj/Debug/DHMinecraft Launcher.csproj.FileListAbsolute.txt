@@ -13,3 +13,23 @@ D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.pdb
 D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\bin\Debug\zxing.xml
 D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.FormDownloadAndUpdateFiles.resources
 d:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.csprojResolveAssemblyReference.cache
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.exe.config
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.exe
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\DHMinecraft Launcher.pdb
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\AlphaBlendTextBox.dll
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\zxing.dll
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\zxing.pdb
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\zxing.xml
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.csprojAssemblyReference.cache
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.FormDownloadAndUpdateFiles.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.FormMainLauncher.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.FormSettings.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft_Launcher.Properties.Resources.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.csproj.GenerateResource.cache
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.csproj.CoreCompileInputs.cache
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.csproj.CopyComplete
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.exe
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\obj\Debug\DHMinecraft Launcher.pdb
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\DHLauncher\Download\DownloadedFiles.json
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\DHLauncher\Profiles\HiTech.json
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher\bin\Debug\DHLauncher\Profiles\MCNewBuildProfile.json

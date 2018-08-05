@@ -102,6 +102,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="DHLauncher\Download\DownloadedFiles.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DHLauncher\Profiles\HiTech.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DHLauncher\Profiles\MCNewBuildProfile.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -127,6 +136,10 @@
     <None Include="Other\Background\DHMinecraftButtonBackground.png" />
     <None Include="Other\Background\DHMinecraftBackground.bmp" />
     <None Include="Resources\DHMinecraftIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DHLauncher\Styles\" />
+    <Folder Include="DHLauncher\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

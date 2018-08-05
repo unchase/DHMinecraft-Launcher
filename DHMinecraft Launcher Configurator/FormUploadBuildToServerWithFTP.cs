@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DHMinecraft_Launcher_Configurator
@@ -64,20 +58,21 @@ namespace DHMinecraft_Launcher_Configurator
 
         private void buttonSetBuildPath_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbDialogBuildDirectory = new FolderBrowserDialog();
-            fbDialogBuildDirectory.Description = "Выберите каталог со сборкой Minecraft";
+            var fbDialogBuildDirectory =
+                new FolderBrowserDialog
+                {
+                    Description = @"Выберите каталог со сборкой Minecraft",
+                    ShowNewFolderButton = true
+                };
             //fbDialogBuildDirectory.RootFolder = Environment.SpecialFolder.ApplicationData;
-            fbDialogBuildDirectory.ShowNewFolderButton = true;
-            if (fbDialogBuildDirectory.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                textBoxBuildPath.Text = fbDialogBuildDirectory.SelectedPath;
-                MessageBox.Show("Выбрана директория со сборкой: " + textBoxBuildPath.Text, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            if (fbDialogBuildDirectory.ShowDialog() != DialogResult.OK) return;
+            textBoxBuildPath.Text = fbDialogBuildDirectory.SelectedPath;
+            MessageBox.Show("Выбрана директория со сборкой: " + textBoxBuildPath.Text, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         //ToDo: !!исправить, чтобы создавались все промежуточные пути
@@ -90,17 +85,17 @@ namespace DHMinecraft_Launcher_Configurator
                 toolStripStatusLabelProgress.Text = "Загрузка файлов на сервер ...";
                 if (FtpCreateFolder("/" + buildName, textBoxFTPHost.Text, textBoxFTPLogin.Text, textBoxFTPPassword.Text))
                 {
-                    List<string> buildAllFiles = Utils.GetAllFiles(textBoxBuildPath.Text, "*.*", new string[1]);
-                    int countOfAllFiles = buildAllFiles.Count;
-                    int countOfUploadedFiles = 0;
-                    foreach (string buildFile in buildAllFiles)
+                    var buildAllFiles = Utils.GetAllFiles(textBoxBuildPath.Text, "*.*", new string[1]);
+                    var countOfAllFiles = buildAllFiles.Count;
+                    var countOfUploadedFiles = 0;
+                    foreach (var buildFile in buildAllFiles)
                     {
-                        string relativeFileName = buildFile.Remove(0, textBoxBuildPath.Text.Length);
+                        var relativeFileName = buildFile.Remove(0, textBoxBuildPath.Text.Length);
                         relativeFileName = relativeFileName.Replace("\\", "/");
 
 
-                        FileInfo fi = new FileInfo(buildFile);
-                        string relativeFilePath = relativeFileName.Remove(relativeFileName.Length - fi.Name.Length, fi.Name.Length);
+                        var fi = new FileInfo(buildFile);
+                        var relativeFilePath = relativeFileName.Remove(relativeFileName.Length - fi.Name.Length, fi.Name.Length);
 
                         FtpCreateFolder("/" + buildName + relativeFilePath, textBoxFTPHost.Text, textBoxFTPLogin.Text, textBoxFTPPassword.Text);
 
@@ -125,11 +120,11 @@ namespace DHMinecraft_Launcher_Configurator
             try
             {
                 //ToDo: добавить проверку существования папки
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + ftpHostName + relativeFilePath);
+                var request = (FtpWebRequest)WebRequest.Create("ftp://" + ftpHostName + relativeFilePath);
                 request.Method = WebRequestMethods.Ftp.MakeDirectory;
                 request.Credentials = new NetworkCredential(ftpLogin, ftpPassword);
                 request.EnableSsl = true;
-                using (FtpWebResponse resp = (FtpWebResponse)request.GetResponse())
+                using (var resp = (FtpWebResponse)request.GetResponse())
                 {
                     if (resp.StatusCode == FtpStatusCode.PathnameCreated)
                         return true;
@@ -150,23 +145,21 @@ namespace DHMinecraft_Launcher_Configurator
 
         public bool FtpUploadFile(string filename, string relativeFilePath, string ftpHostName, string ftpLogin, string ftpPassword)
         {
-            FileInfo fileInf = new FileInfo(filename);
-            FtpWebRequest reqFTP;
-            reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://" + ftpHostName + relativeFilePath + fileInf.Name));
+            var fileInf = new FileInfo(filename);
+            var reqFTP = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpHostName + relativeFilePath + fileInf.Name));
             reqFTP.Credentials = new NetworkCredential(ftpLogin, ftpPassword);
             reqFTP.EnableSsl = true;
             reqFTP.KeepAlive = false;
             reqFTP.Method = WebRequestMethods.Ftp.UploadFile;
             reqFTP.UseBinary = true;
             reqFTP.ContentLength = fileInf.Length;
-            int buffLength = 2048;
-            byte[] buff = new byte[buffLength];
-            int contentLen;
-            FileStream fs = fileInf.OpenRead();
+            var buffLength = 2048;
+            var buff = new byte[buffLength];
+            var fs = fileInf.OpenRead();
             try
             {
-                Stream strm = reqFTP.GetRequestStream();
-                contentLen = fs.Read(buff, 0, buffLength);
+                var strm = reqFTP.GetRequestStream();
+                var contentLen = fs.Read(buff, 0, buffLength);
                 while (contentLen != 0)
                 {
                     strm.Write(buff, 0, contentLen);

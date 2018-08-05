@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ZXing;
 
 namespace DHMinecraft_Launcher
 {
@@ -84,9 +78,7 @@ namespace DHMinecraft_Launcher
         /// <returns>Возвращает true, если строка пуста. False, если не пуста.</returns>
         public bool FieldIsEmpty(string field)
         {
-            if (field == "")
-                return true;
-            return false;
+            return field == "";
         }
 
         /// <summary>
@@ -97,17 +89,18 @@ namespace DHMinecraft_Launcher
         {
             if (profile != null)
             {
-                string[] mcRootFolderSplit = profile.gameDirectory.Split('\\');
-                this.minecraftRootFolder = mcRootFolderSplit[mcRootFolderSplit.Length - 1];
-                this.appData = mcRootFolderSplit[0];
-                for (int i = 1; i < mcRootFolderSplit.Length - 1; i++)
+                var mcRootFolderSplit = profile.gameDirectory.Split('\\');
+                minecraftRootFolder = mcRootFolderSplit[mcRootFolderSplit.Length - 1];
+                appData = mcRootFolderSplit[0];
+                for (var i = 1; i < mcRootFolderSplit.Length - 1; i++)
                 {
-                    this.appData += "\\" + mcRootFolderSplit[i];
+                    appData += "\\" + mcRootFolderSplit[i];
                 }
-                //ToDo: !исправить, так как имя сервера не должно зависеть от имени профиля
-                this.currentServerName = profile.serverName;
 
-                this.currentProfile = profile;
+                //ToDo: !исправить, так как имя сервера не должно зависеть от имени профиля
+                currentServerName = profile.serverName;
+
+                currentProfile = profile;
             }
             ReloadServersNames();
         }
@@ -147,7 +140,7 @@ namespace DHMinecraft_Launcher
                 if (!FieldIsEmpty(alphaBlendTextBoxLogin.Text))
                 {
                     userLogin = alphaBlendTextBoxLogin.Text;
-                    string responseFromServerOffline = MineCraftSettings._lastGameBuild + ":" + Utils.MD5Hash.GetMd5Hash(MD5.Create(), userLogin) + ":" + userLogin + ":0:";
+                    var responseFromServerOffline = MineCraftSettings._lastGameBuild + ":" + Utils.MD5Hash.GetMd5Hash(MD5.Create(), userLogin) + ":" + userLogin + ":0:";
                     DownloadAndRunMinecraft(responseFromServerOffline);
                 }
                 else
@@ -162,14 +155,14 @@ namespace DHMinecraft_Launcher
         /// <param name="responseWithSession">Строка с ответом сервера на авторизацию пользователя.</param>
         public void DownloadAndRunMinecraft(string responseWithSession)
         {
-            string[] splitRes = responseWithSession.Split(':');
+            var splitRes = responseWithSession.Split(':');
             lastGameBuild = splitRes[0];
-            string loginmd5 = splitRes[1];
+            var loginmd5 = splitRes[1];
             sessionID = splitRes[3];
 
             //ToDo: сделать проверку на существование и совпадение файлов для запуска. Если их нет, то скачать
             allFilesWasDownloaded = false;
-            bool allFilesWasChecked = false;
+            var allFilesWasChecked = false;
             if (!checkBoxOfflineMode.Checked)
             {
                 formDownloadAndUpdateFiles = new FormDownloadAndUpdateFiles(this, currentProfile);
@@ -188,7 +181,7 @@ namespace DHMinecraft_Launcher
                 if (Utils.MD5Hash.VerifyMd5Hash(MD5.Create(), userLogin, loginmd5))
                 {
                     //ToDo: проверить и добавить currentProfile.jvmArguments в строку из настроек (с предварительной проверкой, была ли она)
-                    string consoleRunString = "-Xmx" + currentProfile.memory + "m " + " " + currentProfile.jvmArguments + " " + additionalJVMArguments + " -Djava.library.path=" + currentProfile.gameDirectory + "\\" + defaultMinecraftVersionsFolder + "\\" + currentProfile.serverName + "\\" + currentProfile.serverName + "-natives" + " -cp " + currentProfile.gameDirectory + "\\" + defaultMinecraftVersionsFolder + "\\" + currentProfile.serverName + "\\" + currentProfile.serverName + ".jar;";
+                    var consoleRunString = "-Xmx" + currentProfile.memory + "m " + " " + currentProfile.jvmArguments + " " + additionalJVMArguments + " -Djava.library.path=" + currentProfile.gameDirectory + "\\" + defaultMinecraftVersionsFolder + "\\" + currentProfile.serverName + "\\" + currentProfile.serverName + "-natives" + " -cp " + currentProfile.gameDirectory + "\\" + defaultMinecraftVersionsFolder + "\\" + currentProfile.serverName + "\\" + currentProfile.serverName + ".jar;";
 
                     MineCraftJsonSettings mineCraftJsonSettings;
                     try
@@ -200,14 +193,13 @@ namespace DHMinecraft_Launcher
                         MessageBox.Show("Не удалось запустить minecraft. Текст ошибки: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    string[] librariesPath = mineCraftJsonSettings.ParseLibraries(appData, minecraftRootFolder, currentServerName, librariesFolder);
 
-                    foreach (string libraryPath in librariesPath)
+                    foreach (var libraryPath in mineCraftJsonSettings.ParseLibraries(appData, minecraftRootFolder, currentServerName, librariesFolder))
                         consoleRunString += libraryPath + ";";
 
                     consoleRunString += " " + mineCraftJsonSettings.mainClass;
 
-                    string minecraftArguments = mineCraftJsonSettings.minecraftArguments;
+                    var minecraftArguments = mineCraftJsonSettings.minecraftArguments;
                     minecraftArguments = minecraftArguments.Replace("${auth_player_name}", userLogin);
                     minecraftArguments = minecraftArguments.Replace("${auth_session}", sessionID);
                     minecraftArguments = minecraftArguments.Replace("${version_name}", launcherVersion);
@@ -216,7 +208,7 @@ namespace DHMinecraft_Launcher
 
                     consoleRunString += " " + minecraftArguments;
 
-                    ProcessStartInfo mcStartInfo = new ProcessStartInfo(currentProfile.javaExecutable, consoleRunString);
+                    var mcStartInfo = new ProcessStartInfo(currentProfile.javaExecutable, consoleRunString);
                     if (checkBoxShowRunLog.Checked)
                         mcStartInfo.WindowStyle = ProcessWindowStyle.Normal;
                     else
@@ -230,7 +222,7 @@ namespace DHMinecraft_Launcher
                         MessageBox.Show("Не удалось запустить minecraft. Текст ошибки: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    this.Close();
+                    Close();
                 }
                 else
                     MessageBox.Show("Полученный MD5-хэш логина не совпадает с вычисленным.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -248,7 +240,7 @@ namespace DHMinecraft_Launcher
             //ToDo: добавить загрузку стилей
 
 
-            string profilesFullPathFolder = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder;
+            var profilesFullPathFolder = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder;
 
             //try
             //{
@@ -267,7 +259,7 @@ namespace DHMinecraft_Launcher
             ReloadLauncherProfiles(profilesFullPathFolder);
 
             //ToDo: нужно ли это? Ускоряет ли?
-            WebRequest request = WebRequest.Create(newsServerUri);
+            var request = WebRequest.Create(newsServerUri);
             request.Proxy = new WebProxy();
             request.Method = "POST";
 
@@ -304,13 +296,13 @@ namespace DHMinecraft_Launcher
         /// <returns>Возвращает QR-код в виде <seealso cref="System.Drawning.Bitmap"/> изображения.</returns>
         public Bitmap GenerateQR(string text, int width, int height)
         {
-            var bw = new ZXing.BarcodeWriter();
-            var encOptions = new ZXing.Common.EncodingOptions() { Width = width, Height = height, Margin = 0 };
-            bw.Options = encOptions;
-            bw.Format = ZXing.BarcodeFormat.QR_CODE;
-            var result = new Bitmap(bw.Write(text));
-            
-            return result;
+            var bw = new ZXing.BarcodeWriter
+            {
+                Options = new ZXing.Common.EncodingOptions() {Width = width, Height = height, Margin = 0},
+                Format = ZXing.BarcodeFormat.QR_CODE
+            };
+
+            return new Bitmap(bw.Write(text));
         }
         #endregion
 
@@ -322,8 +314,7 @@ namespace DHMinecraft_Launcher
             comboBoxServer.Items.Clear();
             if (currentProfile != null)
             {
-                string[] serversNamesFullPath = Directory.GetDirectories(currentProfile.gameDirectory + "\\" + defaultMinecraftVersionsFolder);
-                foreach (string serverNameFullPath in serversNamesFullPath)
+                foreach (var serverNameFullPath in Directory.GetDirectories(currentProfile.gameDirectory + "\\" + defaultMinecraftVersionsFolder))
                 {
                     if (CheckServersFolderFolders(serverNameFullPath))
                         comboBoxServer.Items.Add(new DirectoryInfo(serverNameFullPath).Name);
@@ -332,8 +323,7 @@ namespace DHMinecraft_Launcher
             }
             else
             {
-                string[] serversNamesFullPath = Directory.GetDirectories(appData + "\\" + minecraftRootFolder + "\\" + defaultMinecraftVersionsFolder);
-                foreach (string serverNameFullPath in serversNamesFullPath)
+                foreach (var serverNameFullPath in Directory.GetDirectories(appData + "\\" + minecraftRootFolder + "\\" + defaultMinecraftVersionsFolder))
                 {
                     if (CheckServersFolderFolders(serverNameFullPath))
                         comboBoxServer.Items.Add(new DirectoryInfo(serverNameFullPath).Name);
@@ -371,7 +361,7 @@ namespace DHMinecraft_Launcher
         {
             if (Directory.Exists(profilesFullPathFolder))
             {
-                string[] profilesWithFullPath = Directory.GetFiles(profilesFullPathFolder);
+                var profilesWithFullPath = Directory.GetFiles(profilesFullPathFolder);
                 if (profilesWithFullPath.Length == 0)
                 {
                     MessageBox.Show("Не найдены файлы профиля лаунчера в папке \"" + profilesFullPathFolder + "\".", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -381,7 +371,7 @@ namespace DHMinecraft_Launcher
                 comboBoxProfilesMain.Items.Clear();
                 foreach (var profileWithFillPath in profilesWithFullPath)
                 {
-                    string profileName = Path.GetFileNameWithoutExtension(profileWithFillPath);
+                    var profileName = Path.GetFileNameWithoutExtension(profileWithFillPath);
                     comboBoxProfilesMain.Items.Add(profileName);
                 }
 
@@ -580,8 +570,8 @@ namespace DHMinecraft_Launcher
                             userPassword = alphaBlendTextBoxPassword.Text;
                             responseFromServer = Utils.AuthOnServer(authWithServerUri, userLogin, Utils.MD5Hash.GetMd5Hash(MD5.Create(), userPassword), launcherVersion);
 
-                            string goodAuthResponsePattern = @"\d*:\w*:\w*:\w*";
-                            Regex regexGoodAuthResponsePattern = new Regex(goodAuthResponsePattern);
+                            var goodAuthResponsePattern = @"\d*:\w*:\w*:\w*";
+                            var regexGoodAuthResponsePattern = new Regex(goodAuthResponsePattern);
 
                             try
                             {
@@ -642,16 +632,16 @@ namespace DHMinecraft_Launcher
         /// </summary>
         private void SaveLoginToUserFile()
         {
-            UnicodeEncoding ByteConverter = new UnicodeEncoding();
-            byte[] key = MineCraftSettings._keyLogin;
-            byte[] encryptUserLogin = ProtectedData.Protect(ByteConverter.GetBytes(alphaBlendTextBoxLogin.Text), key, DataProtectionScope.CurrentUser);
+            var ByteConverter = new UnicodeEncoding();
+            var key = MineCraftSettings._keyLogin;
+            var encryptUserLogin = ProtectedData.Protect(ByteConverter.GetBytes(alphaBlendTextBoxLogin.Text), key, DataProtectionScope.CurrentUser);
 
-            string launcherEncryptUserFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginFileName;
-            string launcherEncryptUserLoginLenghtFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginLenghtFileName;
-            FileStream fs = new FileStream(launcherEncryptUserFileNameFullPath, FileMode.Create, FileAccess.Write);
-            FileStream fsLength = new FileStream(launcherEncryptUserLoginLenghtFileNameFullPath, FileMode.Create, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fsLength);
-            BinaryWriter wr = new BinaryWriter(fs);
+            var launcherEncryptUserFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginFileName;
+            var launcherEncryptUserLoginLenghtFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginLenghtFileName;
+            var fs = new FileStream(launcherEncryptUserFileNameFullPath, FileMode.Create, FileAccess.Write);
+            var fsLength = new FileStream(launcherEncryptUserLoginLenghtFileNameFullPath, FileMode.Create, FileAccess.Write);
+            var sw = new StreamWriter(fsLength);
+            var wr = new BinaryWriter(fs);
             try
             {
                 sw.Write(encryptUserLogin.Length);
@@ -663,7 +653,7 @@ namespace DHMinecraft_Launcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Произошла ошибка при записи файла профиля: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -679,22 +669,21 @@ namespace DHMinecraft_Launcher
         /// </summary>
         private void LoadLoginFromUserFile()
         {
-            UnicodeEncoding ByteConverter = new UnicodeEncoding();
-            byte[] key = MineCraftSettings._keyLogin;
-            byte[] decryptUserLogin;
+            var ByteConverter = new UnicodeEncoding();
+            var key = MineCraftSettings._keyLogin;
 
-            string launcherEncryptUserFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginFileName;
-            string launcherEncryptUserLoginLenghtFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginLenghtFileName;
+            var launcherEncryptUserFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginFileName;
+            var launcherEncryptUserLoginLenghtFileNameFullPath = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherUserFolder + "\\" + launcherEncryptUserLoginLenghtFileName;
             if (!File.Exists(launcherEncryptUserFileNameFullPath) || !File.Exists(launcherEncryptUserLoginLenghtFileNameFullPath))
                 return;
-            FileStream fs = new FileStream(launcherEncryptUserFileNameFullPath, FileMode.Open, FileAccess.Read);
-            FileStream fsLength = new FileStream(launcherEncryptUserLoginLenghtFileNameFullPath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fsLength);
-            BinaryReader br = new BinaryReader(fs);
+            var fs = new FileStream(launcherEncryptUserFileNameFullPath, FileMode.Open, FileAccess.Read);
+            var fsLength = new FileStream(launcherEncryptUserLoginLenghtFileNameFullPath, FileMode.Open, FileAccess.Read);
+            var sr = new StreamReader(fsLength);
+            var br = new BinaryReader(fs);
             try
             {
-                int encryptUserLoginLength = Convert.ToInt32(sr.ReadToEnd());
-                decryptUserLogin = ProtectedData.Unprotect(br.ReadBytes(encryptUserLoginLength), key, DataProtectionScope.CurrentUser);
+                var encryptUserLoginLength = Convert.ToInt32(sr.ReadToEnd());
+                var decryptUserLogin = ProtectedData.Unprotect(br.ReadBytes(encryptUserLoginLength), key, DataProtectionScope.CurrentUser);
                 alphaBlendTextBoxLogin.Text = ByteConverter.GetString(decryptUserLogin);
                 checkBoxRememberPassword.Checked = true;
                 fs.Close();
@@ -703,7 +692,7 @@ namespace DHMinecraft_Launcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Произошла ошибка при загрузке профиля: " + ex.Message, "Ошибка при загрузке профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -715,14 +704,12 @@ namespace DHMinecraft_Launcher
 
         private void comboBoxProfilesMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxProfilesMain.SelectedItem != null)
-            {
-                string jsonUri = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder + "\\" + comboBoxProfilesMain.SelectedItem.ToString() + ".json";
-                if (File.Exists(jsonUri))
-                    currentProfile = Utils.Deserialize<Profile>(jsonUri, Encoding.UTF8);
-                else
-                    MessageBox.Show("Файл профиля " + jsonUri + " не найден.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (comboBoxProfilesMain.SelectedItem == null) return;
+            var jsonUri = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder + "\\" + comboBoxProfilesMain.SelectedItem.ToString() + ".json";
+            if (File.Exists(jsonUri))
+                currentProfile = Utils.Deserialize<Profile>(jsonUri, Encoding.UTF8);
+            else
+                MessageBox.Show("Файл профиля " + jsonUri + " не найден.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void checkBoxOfflineMode_CheckedChanged(object sender, EventArgs e)

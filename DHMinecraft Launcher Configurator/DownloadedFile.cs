@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DHMinecraft_Launcher_Configurator
 {
@@ -90,7 +86,7 @@ namespace DHMinecraft_Launcher_Configurator
         /// <param name="newDownloadedFile">Добавляемый скачиваемый файл.</param>
         public void AddDownloadedFile(DownloadedFile newDownloadedFile)
         {
-            this.downloadedFiles.Add(newDownloadedFile);
+            downloadedFiles.Add(newDownloadedFile);
         }
 
         /// <summary>
@@ -104,8 +100,8 @@ namespace DHMinecraft_Launcher_Configurator
         /// <param name="md5CheckSum">MD5-хэш скачиваемого файла.</param>
         public void AddDownloadedFile(string name, string uri, bool downloadIfExist, string localRelativePath, string sourceRelativePath, string md5CheckSum)
         {
-            DownloadedFile newDownloadedFile = new DownloadedFile(name, uri, downloadIfExist, localRelativePath, sourceRelativePath, md5CheckSum);
-            this.downloadedFiles.Add(newDownloadedFile);
+            var newDownloadedFile = new DownloadedFile(name, uri, downloadIfExist, localRelativePath, sourceRelativePath, md5CheckSum);
+            downloadedFiles.Add(newDownloadedFile);
         }
     }
 }

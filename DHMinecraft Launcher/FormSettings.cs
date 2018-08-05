@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DHMinecraft_Launcher
@@ -110,8 +104,7 @@ namespace DHMinecraft_Launcher
             comboBoxServersNames.Items.Clear();
             if (profile != null)
             {
-                string[] serversNamesFullPath = Directory.GetDirectories(profile.gameDirectory + "\\" + MineCraftSettings._defaultMinecraftVersionsFolder);
-                foreach(string serverNameFullPath in serversNamesFullPath)
+                foreach(var serverNameFullPath in Directory.GetDirectories(profile.gameDirectory + "\\" + MineCraftSettings._defaultMinecraftVersionsFolder))
                 {
                     comboBoxServersNames.Items.Add(new DirectoryInfo(serverNameFullPath).Name);
                 }
@@ -119,8 +112,7 @@ namespace DHMinecraft_Launcher
             }
             else
             {
-                string[] serversNamesFullPath = Directory.GetDirectories(appData + "\\" + minecraftRootFolder + "\\" + MineCraftSettings._defaultMinecraftVersionsFolder);
-                foreach (string serverNameFullPath in serversNamesFullPath)
+                foreach (var serverNameFullPath in Directory.GetDirectories(appData + "\\" + minecraftRootFolder + "\\" + MineCraftSettings._defaultMinecraftVersionsFolder))
                 {
                     comboBoxServersNames.Items.Add(new DirectoryInfo(serverNameFullPath).Name);
                 }
@@ -130,12 +122,12 @@ namespace DHMinecraft_Launcher
 
         private void buttonCancleSettings_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void buttonSaveSettings_Click(object sender, EventArgs e)
         {
-            string profileName = textBoxProfile.Text;
+            var profileName = textBoxProfile.Text;
 
             //ToDo: сделать проверку profileName на регулярном выражении, что это путь (добавить в if)
             if (profileName == "")
@@ -144,7 +136,7 @@ namespace DHMinecraft_Launcher
                 return;
             }
 
-            string profileGameDirectory = textBoxGameDirectory.Text;
+            var profileGameDirectory = textBoxGameDirectory.Text;
 
             //ToDo: сделать проверку profileGameDirectory на регулярном выражении, что это путь (добавить в if)
             if (profileGameDirectory == "")
@@ -201,7 +193,7 @@ namespace DHMinecraft_Launcher
                 MessageBox.Show("Не верно задано значение \"" + checkBoxResolution.Text + "\"", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            string profileJavaExecutable = textBoxExecutableJava.Text;
+            var profileJavaExecutable = textBoxExecutableJava.Text;
 
             //ToDo: сделать проверку profileJavaExecutable на регулярном выражении, что это путь (добавить в if)
             if (profileJavaExecutable == "")
@@ -211,9 +203,9 @@ namespace DHMinecraft_Launcher
             }
 
             //ToDo: сделать проверку аргументов JVM через регулярные выражения
-            string profileJVMArguments = textBoxJVMArguments.Text;
+            var profileJVMArguments = textBoxJVMArguments.Text;
 
-            string serverName = comboBoxServersNames.SelectedItem.ToString();
+            var serverName = comboBoxServersNames.SelectedItem.ToString();
 
             if (profile != null)
             {
@@ -229,14 +221,14 @@ namespace DHMinecraft_Launcher
             else
                 profile = new Profile(profileName, profileGameDirectory, profileMemory, profileWidthResolution, profileHeightResolution, profileJavaExecutable, profileJVMArguments, serverName);
 
-            string jSonFullFileName = profile.gameDirectory + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder + "\\" + profile.name + ".json";
+            var jSonFullFileName = profile.gameDirectory + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder + "\\" + profile.name + ".json";
             try
             {
-                string jSonOldFullFileName = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder + "\\" + profile.name + ".json";
+                var jSonOldFullFileName = appData + "\\" + minecraftRootFolder + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder + "\\" + profile.name + ".json";
 
                 if (Utils.SaveClassObjectToJsonFile<Profile>(profile, jSonFullFileName, Encoding.UTF8))
                 {
-                    string profilesFullPathFolder = profile.gameDirectory + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder;
+                    var profilesFullPathFolder = profile.gameDirectory + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder;
                     formMainLauncher.LoadSettingsFromProfile(profile);
                     //formMainLauncher.CopyJsonFromTo<Profile>(jSonFullFileName, profile.gameDirectory + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder);
                     //profilesFullPathFolder = profile.gameDirectory + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder;
@@ -244,7 +236,7 @@ namespace DHMinecraft_Launcher
 
                     if (jSonOldFullFileName != jSonFullFileName && Path.GetFileNameWithoutExtension(jSonOldFullFileName) == Path.GetFileNameWithoutExtension(jSonFullFileName))
                     {
-                        if (MessageBox.Show("Удалить старый файл профиля " + jSonOldFullFileName + "\n(Новый файл профиля будет создан в " + jSonFullFileName + ")", "Удалить старый файл профиля?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                        if (MessageBox.Show("Удалить старый файл профиля " + jSonOldFullFileName + "\n(Новый файл профиля будет создан в " + jSonFullFileName + ")", "Удалить старый файл профиля?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             File.Delete(jSonOldFullFileName);
                             MessageBox.Show("Старый файл профиля " + jSonOldFullFileName + " был удален.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -253,7 +245,7 @@ namespace DHMinecraft_Launcher
                     }
                     else
                         MessageBox.Show("Файл профиля " + jSonFullFileName + " был сохранен.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    Close();
                 }
                 else
                     MessageBox.Show("Файл профиля " + jSonFullFileName + "не был сохранен.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -268,33 +260,35 @@ namespace DHMinecraft_Launcher
         //ToDo: выбрать корневую папку майнкрафта
         private void buttonSelectGameDirectory_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbDialogGameDirectory = new FolderBrowserDialog();
-            fbDialogGameDirectory.Description = "Выберите директорию с игрой Minecraft";
-            fbDialogGameDirectory.RootFolder = Environment.SpecialFolder.ApplicationData;
-            fbDialogGameDirectory.ShowNewFolderButton = true;
-            if (fbDialogGameDirectory.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            var fbDialogGameDirectory = new FolderBrowserDialog
             {
-                textBoxGameDirectory.Text = fbDialogGameDirectory.SelectedPath;
-                MessageBox.Show("Выбрана директория с игрой: " + textBoxGameDirectory.Text, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                Description = "Выберите директорию с игрой Minecraft",
+                RootFolder = Environment.SpecialFolder.ApplicationData,
+                ShowNewFolderButton = true
+            };
+            if (fbDialogGameDirectory.ShowDialog() != DialogResult.OK) return;
+            textBoxGameDirectory.Text = fbDialogGameDirectory.SelectedPath;
+            MessageBox.Show("Выбрана директория с игрой: " + textBoxGameDirectory.Text, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonSelectExecutableJava_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofDialogExecutableJava = new OpenFileDialog();
-            ofDialogExecutableJava.AddExtension = true;
-            ofDialogExecutableJava.CheckFileExists = true;
-            ofDialogExecutableJava.CheckPathExists = true;
-            ofDialogExecutableJava.DefaultExt = "exe";
-            ofDialogExecutableJava.DereferenceLinks = true;
-            ofDialogExecutableJava.Filter = "exe файлы (*.exe)|*.exe|bat файлы (*.bat)|*.bat";
-            ofDialogExecutableJava.FilterIndex = 0;
-            ofDialogExecutableJava.InitialDirectory = initialJavaFolder;
-            ofDialogExecutableJava.Multiselect = false;
-            ofDialogExecutableJava.RestoreDirectory = true;
-            ofDialogExecutableJava.ShowHelp = true;
+            var ofDialogExecutableJava = new OpenFileDialog
+            {
+                AddExtension = true,
+                CheckFileExists = true,
+                CheckPathExists = true,
+                DefaultExt = "exe",
+                DereferenceLinks = true,
+                Filter = "exe файлы (*.exe)|*.exe|bat файлы (*.bat)|*.bat",
+                FilterIndex = 0,
+                InitialDirectory = initialJavaFolder,
+                Multiselect = false,
+                RestoreDirectory = true,
+                ShowHelp = true
+            };
 
-            if (ofDialogExecutableJava.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (ofDialogExecutableJava.ShowDialog() == DialogResult.OK)
             {
                 textBoxExecutableJava.Text = ofDialogExecutableJava.FileName;
                 MessageBox.Show("Выбран исполняемый файл Java: " + textBoxExecutableJava.Text, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -14,3 +14,21 @@ D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\De
 D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\bin\Debug\7za.exe
 D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.csprojResolveAssemblyReference.cache
 D:\Kola\MyPrograms\DHMinecraft Launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft_Launcher_Configurator.FormUploadBuildToServerWithFTP.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\7za.exe
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\DHMinecraft Launcher Configurator.exe.config
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\DHMinecraft Launcher Configurator.exe
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\DHMinecraft Launcher Configurator.pdb
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\AlphaBlendTextBox.dll
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\ICSharpCode.SharpZipLib.dll
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\Ionic.Zip.dll
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\Ionic.Zip.pdb
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\bin\Debug\Ionic.Zip.xml
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.csprojAssemblyReference.cache
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft_Launcher_Configurator.FormMainDHMinecraftLauncherConfigurator.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft_Launcher_Configurator.FormUploadBuildToServerWithFTP.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft_Launcher_Configurator.Properties.Resources.resources
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.csproj.GenerateResource.cache
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.csproj.CoreCompileInputs.cache
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.csproj.CopyComplete
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.exe
+e:\Work\Git\DHMinecraft Launcher\dhminecraft-launcher\DHMinecraft Launcher Configurator\obj\Debug\DHMinecraft Launcher Configurator.pdb

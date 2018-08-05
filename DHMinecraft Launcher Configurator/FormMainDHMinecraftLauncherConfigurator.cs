@@ -2,17 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ZBobb;
 //using ICSharpCode.SharpZipLib.Zip;
 using System.Diagnostics;
-using System.Threading;
 using System.Security.Cryptography;
 
 namespace DHMinecraft_Launcher_Configurator
@@ -166,10 +162,10 @@ namespace DHMinecraft_Launcher_Configurator
                     return false;
             }
 
-            List<string> librariesFiles = Utils.GetAllFiles(textBoxLibrariesFullPathFolder.Text, "*.*", ignoreFolders);
+            var librariesFiles = Utils.GetAllFiles(textBoxLibrariesFullPathFolder.Text, "*.*", ignoreFolders);
             if (librariesFiles.Count > 0)
             {
-                List<string> librariesFilesInTempFolderWithZipExtension = CopyJarFilesToTempFolderWithZipExtension(librariesFiles, textBoxCreatedBuildFullPathFolder.Text + "\\" + tempLibrariesJarFilesFolder);
+                var librariesFilesInTempFolderWithZipExtension = CopyJarFilesToTempFolderWithZipExtension(librariesFiles, textBoxCreatedBuildFullPathFolder.Text + "\\" + tempLibrariesJarFilesFolder);
                 if (librariesFilesInTempFolderWithZipExtension.Count > 0)
                 {
                     if (UnpackZipFilesToFolders(librariesFilesInTempFolderWithZipExtension, textBoxCreatedBuildFullPathFolder.Text + "\\" + tempLibrariesJarFilesFolder + "\\" + tempLibrariesUnpackedFolders, ""))
@@ -263,11 +259,13 @@ namespace DHMinecraft_Launcher_Configurator
         /// <param name="tb"><seealso cref="System.Windows.Forms.TextBox"/>, в который будет выведет полный путь к выбранному каталогу.</param>
         private void SetFullPathFolder(string description, TextBox tb)
         {
-            FolderBrowserDialog fbDirectory = new FolderBrowserDialog();
-            fbDirectory.Description = description;
+            var fbDirectory = new FolderBrowserDialog
+            {
+                Description = description,
+                ShowNewFolderButton = true
+            };
             //fbDirectory.RootFolder = Environment.SpecialFolder.ApplicationData;
-            fbDirectory.ShowNewFolderButton = true;
-            if (fbDirectory.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fbDirectory.ShowDialog() == DialogResult.OK)
             {
                 tb.Text = fbDirectory.SelectedPath;
                 MessageBox.Show("Выбрана директория: " + tb.Text, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -348,10 +346,10 @@ namespace DHMinecraft_Launcher_Configurator
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(fullPathFolderWithLibrariesFolders);
-                DirectoryInfo[] librariesFolders = di.GetDirectories();
+                var di = new DirectoryInfo(fullPathFolderWithLibrariesFolders);
+                var librariesFolders = di.GetDirectories();
                 DirectoryInfo libraryFolderManiFestInfo;
-                foreach (DirectoryInfo libraryFolder in librariesFolders)
+                foreach (var libraryFolder in librariesFolders)
                 {
                     libraryFolderManiFestInfo = new DirectoryInfo(fullPathFolderWithLibrariesFolders + "\\" + libraryFolder + "\\" + "META-INF");
                     if (Directory.Exists(libraryFolderManiFestInfo.FullName))
@@ -378,18 +376,18 @@ namespace DHMinecraft_Launcher_Configurator
         {
             if (!Directory.Exists(destinationDirectory))
                 Directory.CreateDirectory(destinationDirectory);
-            foreach (string sourceDirectoryFile in Directory.GetFiles(sourceDirectory))
+            foreach (var sourceDirectoryFile in Directory.GetFiles(sourceDirectory))
             {
-                string destinationDirectoryFile = destinationDirectory + "\\" + Path.GetFileName(sourceDirectoryFile);
+                var destinationDirectoryFile = destinationDirectory + "\\" + Path.GetFileName(sourceDirectoryFile);
                 if (File.Exists(destinationDirectoryFile))
                 {
-                    if (MessageBox.Show("Файл " + sourceDirectoryFile + " уже существует в " + destinationDirectoryFile + ". Перезаписать его?", "Файл уже существует", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show("Файл " + sourceDirectoryFile + " уже существует в " + destinationDirectoryFile + ". Перезаписать его?", "Файл уже существует", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         File.Copy(sourceDirectoryFile, destinationDirectoryFile, true);
                 }
                 else
                     File.Copy(sourceDirectoryFile, destinationDirectoryFile);
             }
-            foreach (string sourceSubDirectory in Directory.GetDirectories(sourceDirectory))
+            foreach (var sourceSubDirectory in Directory.GetDirectories(sourceDirectory))
             {
                 CopyDirectoryWithAllFiles(sourceSubDirectory, destinationDirectory + "\\" + Path.GetFileName(sourceSubDirectory));
             }
@@ -405,17 +403,15 @@ namespace DHMinecraft_Launcher_Configurator
         {
             try
             {
-                List<string> listOfZipFilesInTempFolder = new List<string>();
-                FileInfo jarFile;
-                string newJarFileWithZipExtension;
+                var listOfZipFilesInTempFolder = new List<string>();
                 if (!Directory.Exists(destinationTempJarFilesWithZipExtensionFolderFullPath))
                     Directory.CreateDirectory(destinationTempJarFilesWithZipExtensionFolderFullPath);
 
                 //ToDo: добавить удаление всех файлов в данной директории перед копированием?
-                foreach (string jarFileFullPath in jarFilesFullPath)
+                foreach (var jarFileFullPath in jarFilesFullPath)
                 {
-                    jarFile = new FileInfo(jarFileFullPath);
-                    newJarFileWithZipExtension = Path.GetFileName(jarFileFullPath.Replace(".jar", ".zip"));
+                    var jarFile = new FileInfo(jarFileFullPath);
+                    var newJarFileWithZipExtension = Path.GetFileName(jarFileFullPath.Replace(".jar", ".zip"));
                     jarFile.CopyTo(destinationTempJarFilesWithZipExtensionFolderFullPath + "\\" + newJarFileWithZipExtension, true);
                     listOfZipFilesInTempFolder.Add(destinationTempJarFilesWithZipExtensionFolderFullPath + "\\" + newJarFileWithZipExtension);
                 }
@@ -485,20 +481,20 @@ namespace DHMinecraft_Launcher_Configurator
 
                 if (!checkBoxParallelUnZip.Checked)
                 {
-                    int countOfAllZipFiles = zipFilesFullPath.Count();
-                    int countOfCurrentExtractingZipFile = 1;
-                    foreach (string zipFileFullPath in zipFilesFullPath)
+                    var countOfAllZipFiles = zipFilesFullPath.Count();
+                    var countOfCurrentExtractingZipFile = 1;
+                    foreach (var zipFileFullPath in zipFilesFullPath)
                     {
                         if (!File.Exists(zipFileFullPath))
                             return false;
 
-                        string arguments7Zip = "x -tzip " + zipFileFullPath + " -x!META-INF -o" + unpackingFolderFullPath + "\\" + Path.GetFileName(zipFileFullPath).Replace(".zip", "");
+                        var arguments7Zip = "x -tzip " + zipFileFullPath + " -x!META-INF -o" + unpackingFolderFullPath + "\\" + Path.GetFileName(zipFileFullPath).Replace(".zip", "");
 
-                        ProcessStartInfo unpackProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
+                        var unpackProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
                         if (checkBoxHideUnZipLibraries.Checked)
                             unpackProcessStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-                        Process unpackProcess = new Process();
+                        var unpackProcess = new Process();
                         try
                         {
                             toolStripStatusLabelProgressOutput.Text = "Распаковка " + Path.GetFileName(zipFileFullPath) + " (файл " + countOfCurrentExtractingZipFile + "/" + countOfAllZipFiles + ") ...";
@@ -517,18 +513,18 @@ namespace DHMinecraft_Launcher_Configurator
                 }
                 else
                 {
-                    bool wasBad = false;
+                    var wasBad = false;
                     toolStripStatusLabelProgressOutput.Text = "Параллельная распаковка файлов библиотек ...";
-                    int countOfNotExtractedZipFiles = zipFilesFullPath.Count();
+                    var countOfNotExtractedZipFiles = zipFilesFullPath.Count();
                     Parallel.ForEach(zipFilesFullPath, zipFileFullPath =>
                     {
-                        string arguments7Zip = "x -tzip " + zipFileFullPath + " -x!META-INF -o" + unpackingFolderFullPath + "\\" + Path.GetFileName(zipFileFullPath).Replace(".zip", "");
+                        var arguments7Zip = "x -tzip " + zipFileFullPath + " -x!META-INF -o" + unpackingFolderFullPath + "\\" + Path.GetFileName(zipFileFullPath).Replace(".zip", "");
 
-                        ProcessStartInfo unpackProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
+                        var unpackProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
                         if (checkBoxHideUnZipLibraries.Checked)
                             unpackProcessStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-                        Process unpackProcess = new Process();
+                        var unpackProcess = new Process();
                         try
                         {
                             unpackProcess.StartInfo = unpackProcessStartInfo;
@@ -622,17 +618,17 @@ namespace DHMinecraft_Launcher_Configurator
                         else
                             return false;
 
-                    DirectoryInfo di = new DirectoryInfo(sourceFullPathFolder);
-                    int countOfCurrentFolder = 1;
-                    foreach (DirectoryInfo sourceLibraryFullPathFolder in di.GetDirectories())
+                    var di = new DirectoryInfo(sourceFullPathFolder);
+                    var countOfCurrentFolder = 1;
+                    foreach (var sourceLibraryFullPathFolder in di.GetDirectories())
                     {
-                        string arguments7Zip = "a -tzip " + zipFileFullPath + " " + sourceLibraryFullPathFolder.FullName + @"\*";
+                        var arguments7Zip = "a -tzip " + zipFileFullPath + " " + sourceLibraryFullPathFolder.FullName + @"\*";
 
-                        ProcessStartInfo packProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
+                        var packProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
                         if (checkBoxHideZipLibraries.Checked)
                             packProcessStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                         
-                        Process packProcess = new Process();
+                        var packProcess = new Process();
                         try
                         {
                             toolStripStatusLabelProgressOutput.Text = "Упаковка " + sourceLibraryFullPathFolder.FullName.Remove(0, sourceFullPathFolder.Length) + " (каталог " + countOfCurrentFolder + "/" + di.GetDirectories().Count() + ") ...";
@@ -650,16 +646,16 @@ namespace DHMinecraft_Launcher_Configurator
 
                     if (packFiles)
                     {
-                        int countOfCurrentFile = 1;
-                        foreach(FileInfo sourceLibraryFullPathFile in di.GetFiles())
+                        var countOfCurrentFile = 1;
+                        foreach(var sourceLibraryFullPathFile in di.GetFiles())
                         {
-                            string arguments7Zip = "a -tzip " + zipFileFullPath + " " + sourceLibraryFullPathFile.FullName;
+                            var arguments7Zip = "a -tzip " + zipFileFullPath + " " + sourceLibraryFullPathFile.FullName;
 
-                            ProcessStartInfo packProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
+                            var packProcessStartInfo = new ProcessStartInfo("7za.exe", arguments7Zip);
                             if (checkBoxHideZipLibraries.Checked)
                                 packProcessStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-                            Process packProcess = new Process();
+                            var packProcess = new Process();
                             try
                             {
                                 toolStripStatusLabelProgressOutput.Text = "Упаковка " + sourceLibraryFullPathFile.FullName.Remove(0, sourceFullPathFolder.Length) + " (файл " + countOfCurrentFile + "/" + di.GetFiles().Count() + ") ...";
@@ -691,22 +687,18 @@ namespace DHMinecraft_Launcher_Configurator
 
         public void ExtractFile(string zipToUnpack, string unpackDirectory, ProgressBar progressBarExtract)
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
+            var worker = new BackgroundWorker {WorkerReportsProgress = true};
             worker.ProgressChanged += (o, e) =>
             {
-                if (e.ProgressPercentage > 100)
-                    progressBarExtract.Value = 100;
-                else
-                    progressBarExtract.Value = e.ProgressPercentage;
+                progressBarExtract.Value = e.ProgressPercentage > 100 ? 100 : e.ProgressPercentage;
             };
             worker.DoWork += (o, e) =>
             {
-                using (ZipFile zip = ZipFile.Read(zipToUnpack))
+                using (var zip = ZipFile.Read(zipToUnpack))
                 {
-                    int step = (int)(zip.Count / 100.0);
-                    int percentComplete = 0;
-                    foreach (ZipEntry file in zip)
+                    var step = (int)(zip.Count / 100.0);
+                    var percentComplete = 0;
+                    foreach (var file in zip)
                     {
                         file.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
                         percentComplete += step;
@@ -760,7 +752,7 @@ namespace DHMinecraft_Launcher_Configurator
 
                 if (Directory.Exists(textBoxVersionsFullPathFolder.Text))
                 {
-                    DirectoryInfo di = new DirectoryInfo(textBoxVersionsFullPathFolder.Text);
+                    var di = new DirectoryInfo(textBoxVersionsFullPathFolder.Text);
                     switch (di.GetDirectories().Count())
                     {
                         case 0:
@@ -773,17 +765,17 @@ namespace DHMinecraft_Launcher_Configurator
                             CopyDirectoryWithAllFiles(textBoxVersionsFullPathFolder.Text, textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder);
                             break;
                         default:
-                            if (MessageBox.Show("В папке с versions несколько каталогов. Выбрать один?", "Обнаружено несколько каталогов", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                            if (MessageBox.Show("В папке с versions несколько каталогов. Выбрать один?", "Обнаружено несколько каталогов", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                FolderBrowserDialog fbDialogVersionsDirectory = new FolderBrowserDialog();
+                                var fbDialogVersionsDirectory = new FolderBrowserDialog();
                                 fbDialogVersionsDirectory.Description = "Выберите одну папку из versions";
                                 //fbDialogVersionsDirectory.RootFolder = Environment.SpecialFolder.MyComputer;
                                 fbDialogVersionsDirectory.SelectedPath = textBoxVersionsFullPathFolder.Text;
                                 fbDialogVersionsDirectory.ShowNewFolderButton = true;
-                                if (fbDialogVersionsDirectory.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                if (fbDialogVersionsDirectory.ShowDialog() == DialogResult.OK)
                                 {
                                     toolStripStatusLabelProgressOutput.Text = "Копирование каталога с versions ...";
-                                    DirectoryInfo diVersions = new DirectoryInfo(fbDialogVersionsDirectory.SelectedPath);
+                                    var diVersions = new DirectoryInfo(fbDialogVersionsDirectory.SelectedPath);
                                     CopyDirectoryWithAllFiles(fbDialogVersionsDirectory.SelectedPath, textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder + "\\" + diVersions.Name);
                                 }
                                 else
@@ -835,7 +827,7 @@ namespace DHMinecraft_Launcher_Configurator
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK);
+                MessageBox.Show("Произошла ошибка при создании нового билда: " + ex.Message, "Ошибка", MessageBoxButtons.OK);
             }
         }
 
@@ -862,7 +854,7 @@ namespace DHMinecraft_Launcher_Configurator
             try
             {
                 toolStripStatusLabelProgressOutput.Text = "Создание конфигурационных файлов json ...";
-                DirectoryInfo di = new DirectoryInfo(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder);
+                var di = new DirectoryInfo(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder);
                 if (!Directory.Exists(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder) || di.GetDirectories().Count() == 0)
                 {
                     MessageBox.Show("Папка " + textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder + " не существует или пуста.\nНевозможно создать конфигурационный файл minecraft.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -873,7 +865,7 @@ namespace DHMinecraft_Launcher_Configurator
                     MessageBox.Show("Папка " + textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder + " содержит более одого подкаталога (должен быть один).\nНевозможно создать конфигурационный файл minecraft.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
-                DirectoryInfo diServer = di.GetDirectories().First();
+                var diServer = di.GetDirectories().First();
                 if (diServer.GetDirectories().Count() != 1)
                 {
                     MessageBox.Show("Папка " + diServer.FullName + " не содержит подкаталогов или содержит более одого подкаталога (должен быть один).\nНевозможно создать конфигурационный файл minecraft.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -881,7 +873,7 @@ namespace DHMinecraft_Launcher_Configurator
                 }
                 else
                 {
-                    DirectoryInfo diNativesServerFolder = diServer.GetDirectories().First();
+                    var diNativesServerFolder = diServer.GetDirectories().First();
                     if (diNativesServerFolder.Name.Contains("-natives"))
                     {
                         if (!Directory.Exists(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder + "\\" + textBoxNewCreatedBuildName.Text))
@@ -890,7 +882,7 @@ namespace DHMinecraft_Launcher_Configurator
                     }
                     else
                     {
-                        if (MessageBox.Show("Папка " + diNativesServerFolder.FullName + " имеет неверное название. Переименовать?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                        if (MessageBox.Show("Папка " + diNativesServerFolder.FullName + " имеет неверное название. Переименовать?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             if (!Directory.Exists(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder + "\\" + textBoxNewCreatedBuildName.Text))
                                 Directory.CreateDirectory(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder + "\\" + textBoxNewCreatedBuildName.Text);
@@ -911,7 +903,7 @@ namespace DHMinecraft_Launcher_Configurator
                 }
                 else
                 {
-                    foreach (FileInfo diServerFile in diServer.GetFiles())
+                    foreach (var diServerFile in diServer.GetFiles())
                     {
                         if (Path.GetFileName(diServerFile.FullName).Contains(".jar"))
                         {
@@ -929,13 +921,13 @@ namespace DHMinecraft_Launcher_Configurator
                                 if (checkBoxJsonForge.Checked)
                                 {
                                     //ToDo: добавить вычисление чек-суммы файла библиотек!
-                                    MineCraftJsonSettings.Library minecraftMainLibrary = new MineCraftJsonSettings.Library(textBoxNewCreatedBuildName.Text + "Library", "Created by Lovecmuh.", new string[1]);
+                                    var minecraftMainLibrary = new MineCraftJsonSettings.Library(textBoxNewCreatedBuildName.Text + "Library", "Created by Lovecmuh.", new string[1]);
                                     minecraftJsonSettings = new MineCraftJsonSettings(minecraftMainLibrary, DateTime.Now.ToLongDateString(), textBoxNewCreatedBuildName.Text, DateTime.Now.ToLongDateString());
                                 }
                                 else
                                 {
                                     //ToDo: добавить вычисление чек-суммы файла библиотек!
-                                    MineCraftJsonSettings.Library minecraftMainLibrary = new MineCraftJsonSettings.Library(textBoxNewCreatedBuildName.Text + "Library", "Created by Lovecmuh.", new string[1]);
+                                    var minecraftMainLibrary = new MineCraftJsonSettings.Library(textBoxNewCreatedBuildName.Text + "Library", "Created by Lovecmuh.", new string[1]);
                                     minecraftJsonSettings = new MineCraftJsonSettings(textBoxJsonMinecraftArguments.Text, minecraftMainLibrary, textBoxJsonMainClass.Text, MineCraftConfiguratorSettings._defaultJsonMinimumLauncherVersion, DateTime.Now.ToLongDateString(), textBoxNewCreatedBuildName.Text, MineCraftConfiguratorSettings._defaultJsonType, textBoxJsonProcessArguments.Text, DateTime.Now.ToLongDateString());
                                 }
                                 Utils.SaveClassObjectToJsonFile<MineCraftJsonSettings>(minecraftJsonSettings, textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + defaultMinecraftVersionsFolder + "\\" + textBoxNewCreatedBuildName.Text + "\\" + textBoxNewCreatedBuildName.Text + ".json", Encoding.UTF8);
@@ -964,7 +956,7 @@ namespace DHMinecraft_Launcher_Configurator
 
                 }
                 CheckAndCreateFoldersForLauncher(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text);
-                Profile launcherProfile = new Profile(textBoxNewCreatedBuildName.Text + "Profile", textBoxCustomerGameDirectory.Text, MineCraftConfiguratorSettings._minJavaUsageMemory, textBoxNewCreatedBuildName.Text);
+                var launcherProfile = new Profile(textBoxNewCreatedBuildName.Text + "Profile", textBoxCustomerGameDirectory.Text, MineCraftConfiguratorSettings._minJavaUsageMemory, textBoxNewCreatedBuildName.Text);
                 Utils.SaveClassObjectToJsonFile<Profile>(launcherProfile, textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + launcherMainFolder + "\\" + launcherProfilesFolder + "\\" + launcherProfile.name + ".json", Encoding.UTF8);
 
                 toolStripStatusLabelProgressOutput.Text = "Создание конфигурационных файлов json завершено.";
@@ -972,7 +964,7 @@ namespace DHMinecraft_Launcher_Configurator
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Произошла ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Произошла ошибка при создании файла конфигурации: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -1050,7 +1042,7 @@ namespace DHMinecraft_Launcher_Configurator
             }
             else
             {
-                if (MessageBox.Show("Сборка не была создана или создана частично. Все равно начать загрузку?", "Начать загрузку", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show("Сборка не была создана или создана частично. Все равно начать загрузку?", "Начать загрузку", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     formUploadBuildToServerWithFTP = new FormUploadBuildToServerWithFTP(siteUri.Replace("http://", ""), textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text, textBoxNewCreatedBuildName.Text);
                     formUploadBuildToServerWithFTP.ShowDialog();
@@ -1067,7 +1059,7 @@ namespace DHMinecraft_Launcher_Configurator
             }
             else
             {
-                if (MessageBox.Show("Сборка не была создана или создана частично. Все равно создать конфигурационный файл для скачиваемых файлов сборки?", "Продолжить", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show("Сборка не была создана или создана частично. Все равно создать конфигурационный файл для скачиваемых файлов сборки?", "Продолжить", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     CreateJsonConfigurationFileToDownloadedFiles(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text + "\\" + launcherMainFolder + "\\" + launcherDownloadedFilesFolder + "\\DownloadedFiles.json");
                 }
@@ -1077,11 +1069,11 @@ namespace DHMinecraft_Launcher_Configurator
         private void CreateJsonConfigurationFileToDownloadedFiles(string jsonFileFullPath)
         {
             toolStripStatusLabelProgressOutput.Text = "Формирование конфигурационного файла для скачиваемых файлов ...";
-            List<string> buildFiles = Utils.GetAllFiles(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text, "*.*", new string[1]);
+            var buildFiles = Utils.GetAllFiles(textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text, "*.*", new string[1]);
             //ToDo: удалить?
-            int countOfBuildFiles = buildFiles.Count();
+            var countOfBuildFiles = buildFiles.Count();
 
-            List<DownloadedFiles.DownloadedFile> allDownloadedBuildFiles = new List<DownloadedFiles.DownloadedFile>();
+            var allDownloadedBuildFiles = new List<DownloadedFiles.DownloadedFile>();
 
             string downloadedFileName;
             string downloadedFileUri;
@@ -1090,8 +1082,8 @@ namespace DHMinecraft_Launcher_Configurator
             string downloadedFileSourceRelativePath;
             string downloadedFileMD5CheckSum;
             DownloadedFiles.DownloadedFile downloadedBuildFile;
-            int currentBuildFileCount = 1;
-            foreach (string buildFile in buildFiles)
+            var currentBuildFileCount = 1;
+            foreach (var buildFile in buildFiles)
             {
                 toolStripStatusLabelProgressOutput.Text = "Добавление скачиваемых файлов в конфигурационный файл (" + currentBuildFileCount + "/" + countOfBuildFiles + ") ...";
                 //ToDo: !!!определить переменные
@@ -1099,7 +1091,7 @@ namespace DHMinecraft_Launcher_Configurator
                 //ToDo: исправить, чтобы некоторые файлы не перекчивало заново!
                 downloadedFileDownloadIfExist = true;
                 //ToDo: исправить на нормальное имя
-                string sss = textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text;
+                var sss = textBoxCreatedBuildFullPathFolder.Text + "\\" + textBoxNewCreatedBuildName.Text;
                 downloadedFileLocalRelativePath = buildFile.Remove(0, sss.Length);
                 downloadedFileSourceRelativePath = "/" + textBoxNewCreatedBuildName.Text + "/" + downloadedFileLocalRelativePath.Replace("\\", "/");
                 downloadedFileUri = siteUri + downloadedFileSourceRelativePath;
@@ -1110,7 +1102,7 @@ namespace DHMinecraft_Launcher_Configurator
                 currentBuildFileCount++;
             }
 
-            DownloadedFiles completeDownloadedBuildFiles = new DownloadedFiles(allDownloadedBuildFiles);
+            var completeDownloadedBuildFiles = new DownloadedFiles(allDownloadedBuildFiles);
             if (!Utils.SaveClassObjectToJsonFile<DownloadedFiles>(completeDownloadedBuildFiles, jsonFileFullPath, Encoding.UTF8))
                 MessageBox.Show("Файл конфигурации скачиваемых файлов не был создан.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else

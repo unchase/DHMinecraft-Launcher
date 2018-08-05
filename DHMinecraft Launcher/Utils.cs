@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using ZBobb;
 using System.Runtime.InteropServices;
@@ -47,11 +43,11 @@ namespace DHMinecraft_Launcher
         /// <param name="classObj">Объект класса, который необходимо сериализовать в json-строку.</param>
         public static string Serialize<T>(T classObj)
         {
-            MemoryStream streamJson = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
+            var streamJson = new MemoryStream();
+            var ser = new DataContractJsonSerializer(typeof(T));
             ser.WriteObject(streamJson, classObj);
             streamJson.Position = 0;
-            StreamReader srJson = new StreamReader(streamJson);
+            var srJson = new StreamReader(streamJson);
             return srJson.ReadToEnd();
         }
 
@@ -63,13 +59,14 @@ namespace DHMinecraft_Launcher
         /// <param name="encodingJson">Кодировка <seealso cref="System.Text.Encoding"/>, которая будет использована при десериализации.</param>
         public static T Deserialize<T>(string jsonUri, Encoding encodingJson)
         {
-            WebClient wc = new WebClient();
-            wc.Proxy = new WebProxy();
-            wc.UseDefaultCredentials = true;
+            var wc = new WebClient
+            {
+                Proxy = new WebProxy(),
+                UseDefaultCredentials = true
+            };
             var data = wc.DownloadString(jsonUri);
-            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(T));
-            T person = (T)json.ReadObject(new System.IO.MemoryStream(encodingJson.GetBytes(data)));
-            return person;
+            var json = new DataContractJsonSerializer(typeof(T));
+            return (T)json.ReadObject(new MemoryStream(encodingJson.GetBytes(data)));
         }
 
         /// <summary>
@@ -81,16 +78,16 @@ namespace DHMinecraft_Launcher
         /// <param name="encodingJson">Кодировка <seealso cref="System.Text.Encoding"/>, которая будет использована при сериализации.</param>
         public static bool SaveClassObjectToJsonFile<T>(T classObj, string fullPathJsonFile, Encoding encodingJson)
         {
-            string json = Serialize<T>(classObj);
+            var json = Serialize<T>(classObj);
 
             if (!Directory.Exists(Path.GetDirectoryName(fullPathJsonFile)))
                 Directory.CreateDirectory(Path.GetDirectoryName(fullPathJsonFile));
 
-            using (FileStream fsJson = new FileStream(fullPathJsonFile, FileMode.Create))
+            using (var fsJson = new FileStream(fullPathJsonFile, FileMode.Create))
             {
                 try
                 {
-                    byte[] dataJson = encodingJson.GetBytes(json);
+                    var dataJson = encodingJson.GetBytes(json);
                     fsJson.Write(dataJson, 0, dataJson.Length); 
                 }
                 catch (Exception ex)
@@ -112,10 +109,10 @@ namespace DHMinecraft_Launcher
             //формирует хэш в виде 32-символьной строки в шестнадцатеричном формате
             public static string GetMd5Hash(MD5 md5Hash, string input)
             {
-                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-                StringBuilder sBuilder = new StringBuilder();
+                var data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var sBuilder = new StringBuilder();
 
-                for (int i = 0; i < data.Length; i++)
+                for (var i = 0; i < data.Length; i++)
                 {
                     sBuilder.Append(data[i].ToString("x2"));
                 }
@@ -132,17 +129,10 @@ namespace DHMinecraft_Launcher
             /// <param name="hash">MD5 хэш в виде строки.</param>
             public static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
             {
-                string hashOfInput = GetMd5Hash(md5Hash, input);
-                StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+                var hashOfInput = GetMd5Hash(md5Hash, input);
+                var comparer = StringComparer.OrdinalIgnoreCase;
 
-                if (0 == comparer.Compare(hashOfInput, hash))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return 0 == comparer.Compare(hashOfInput, hash);
             }
 
             // получает checksum файла в выбранном алгоритме хэширования
@@ -151,9 +141,9 @@ namespace DHMinecraft_Launcher
             // string MD5checksum = GetFileChecksum("c:\\myfile.exe", new MD5CryptoServiceProvider());
             private static string GetFileChecksum(string file, HashAlgorithm algorithm)
             {
-                string result = string.Empty;
+                var result = string.Empty;
 
-                using (FileStream fs = File.OpenRead(file))
+                using (var fs = File.OpenRead(file))
                 {
                     result = BitConverter.ToString(algorithm.ComputeHash(fs)).ToLower().Replace("-", "");
                 }
@@ -174,16 +164,18 @@ namespace DHMinecraft_Launcher
         /// <param name="version">Версия minecraft.</param>
         public static string AuthOnServer(string authUri, string login, string passwordmd5, string version)
         {
-            using (WebClient client = new WebClient())
+            using (var client = new WebClient())
             {
                 try
                 {
                     client.Proxy = new WebProxy();
-                    System.Collections.Specialized.NameValueCollection urlDataPost = new System.Collections.Specialized.NameValueCollection();
-                    urlDataPost.Add("user", login);
-                    urlDataPost.Add("password", passwordmd5);
-                    urlDataPost.Add("version", version);
-                    byte[] responsebytes = client.UploadValues(authUri, "POST", urlDataPost);
+                    var urlDataPost = new System.Collections.Specialized.NameValueCollection
+                    {
+                        {"user", login},
+                        {"password", passwordmd5},
+                        {"version", version}
+                    };
+                    var responsebytes = client.UploadValues(authUri, "POST", urlDataPost);
                     return Encoding.UTF8.GetString(responsebytes);
                 }
                 catch (Exception ex)
