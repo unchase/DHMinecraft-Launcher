@@ -64,21 +64,21 @@
             // 
             this.alphaBlendTextBoxLogin.BackAlpha = 10;
             this.alphaBlendTextBoxLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.alphaBlendTextBoxLogin.Font = new System.Drawing.Font("OpenSymbol", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alphaBlendTextBoxLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.alphaBlendTextBoxLogin.Location = new System.Drawing.Point(66, 323);
             this.alphaBlendTextBoxLogin.Name = "alphaBlendTextBoxLogin";
-            this.alphaBlendTextBoxLogin.Size = new System.Drawing.Size(128, 27);
+            this.alphaBlendTextBoxLogin.Size = new System.Drawing.Size(128, 26);
             this.alphaBlendTextBoxLogin.TabIndex = 1;
             // 
             // alphaBlendTextBoxPassword
             // 
             this.alphaBlendTextBoxPassword.BackAlpha = 10;
             this.alphaBlendTextBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.alphaBlendTextBoxPassword.Font = new System.Drawing.Font("OpenSymbol", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alphaBlendTextBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.alphaBlendTextBoxPassword.Location = new System.Drawing.Point(66, 354);
             this.alphaBlendTextBoxPassword.Name = "alphaBlendTextBoxPassword";
             this.alphaBlendTextBoxPassword.PasswordChar = '*';
-            this.alphaBlendTextBoxPassword.Size = new System.Drawing.Size(128, 27);
+            this.alphaBlendTextBoxPassword.Size = new System.Drawing.Size(128, 26);
             this.alphaBlendTextBoxPassword.TabIndex = 2;
             this.alphaBlendTextBoxPassword.UseSystemPasswordChar = true;
             // 
@@ -445,7 +445,7 @@
             this.MaximizeBox = false;
             this.Name = "FormMainLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DHMinecraft Launcher";
+            this.Text = "DHMinecraft Launcher (Unchase - https://github.com/unchase)";
             this.Load += new System.EventHandler(this.FormMainLauncher_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSiteURLQRCode)).EndInit();
