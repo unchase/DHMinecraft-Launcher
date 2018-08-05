@@ -62,7 +62,7 @@ namespace DHMinecraft_Launcher
             /// <param name="md5CheckSum">MD5-хэш скачиваемого файла.</param>
             public DownloadedFile(string name, string uri, bool downloadIfExist, string localRelativePath, string sourceRelativePath, string md5CheckSum)
             {
-                this.name = name;
+                this.name = name; 
                 this.uri = uri;
                 this.downloadIfExist = downloadIfExist;
                 this.localRelativePath = localRelativePath;
