@@ -86,7 +86,7 @@ namespace DHMinecraft_Launcher
         /// <param name="newDownloadedFile">Добавляемый скачиваемый файл.</param>
         public void AddDownloadedFile(DownloadedFile newDownloadedFile)
         {
-            this.downloadedFiles.Add(newDownloadedFile);
+            downloadedFiles.Add(newDownloadedFile);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace DHMinecraft_Launcher
         public void AddDownloadedFile(string name, string uri, bool downloadIfExist, string localRelativePath, string sourceRelativePath, string md5CheckSum)
         {
             var newDownloadedFile = new DownloadedFile(name, uri, downloadIfExist, localRelativePath, sourceRelativePath, md5CheckSum);
-            this.downloadedFiles.Add(newDownloadedFile);
+            downloadedFiles.Add(newDownloadedFile);
         }
     }
 }
