@@ -1,0 +1,3 @@
+*.wxi linguist-language=C#
+*.wxs linguist-language=C#
+*.wixproj linguist-language=C#
