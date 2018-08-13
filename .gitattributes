@@ -1,3 +1,5 @@
 *.wxi linguist-language=C#
 *.wxs linguist-language=C#
 *.wixproj linguist-language=C#
+DH Minecrfat Launcher Setup/* linguist-vendored
+DH-Minecrfat-Launcher-Setup/* linguist-vendored
