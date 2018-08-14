@@ -6,3 +6,4 @@ DH Minecrfat Launcher Setup/* linguist-vendored
 *.wxi linguist-language=csharp
 *.wxs linguist-language=csharp
 *.wixproj linguist-language=csharp
+*.cs linguist-vendored=false
