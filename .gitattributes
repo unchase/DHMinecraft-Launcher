@@ -1,6 +1,8 @@
-DH Minecrfat Launcher Setup/*.wxi linguist-detectable=false
-DH Minecrfat Launcher Setup/*.wxs linguist-detectable=false
-DH Minecrfat Launcher Setup/*.wixproj linguist-detectable=false
-DH-Minecrfat-Launcher-Setup/*.wxi linguist-detectable=false 
-DH-Minecrfat-Launcher-Setup/*.wxs linguist-detectable=false
-DH-Minecrfat-Launcher-Setup/*.wixproj linguist-detectable=false
+DH-Minecrfat-Launcher-Setup/* linguist-vendored
+DH Minecrfat Launcher Setup/* linguist-vendored
+*.wxi linguist-vendored=true
+*.wxs linguist-vendored=true
+*.wixproj linguist-vendored=true
+*.wxi linguist-language=csharp
+*.wxs linguist-language=csharp
+*.wixproj linguist-language=csharp
