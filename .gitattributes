@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 DH Minecrfat Launcher Setup/*.wxi linguist-detectable=false
 DH Minecrfat Launcher Setup/*.wxs linguist-detectable=false
 DH Minecrfat Launcher Setup/*.wixproj linguist-detectable=false
 DH-Minecrfat-Launcher-Setup/*.wxi linguist-detectable=false 
 DH-Minecrfat-Launcher-Setup/*.wxs linguist-detectable=false
 DH-Minecrfat-Launcher-Setup/*.wixproj linguist-detectable=false
+=======
+*.wxi linguist-detectable=false
+*.wxs linguist-detectable=false
+*.wixproj linguist-detectable=false
+DH Minecrfat Launcher Setup/* linguist-vendored
+DH-Minecrfat-Launcher-Setup/* linguist-vendored
+>>>>>>> b23945a787b4e33241ac5bbbdfe246edf5502ca2
