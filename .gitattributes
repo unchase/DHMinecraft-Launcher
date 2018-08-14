@@ -1,5 +1,7 @@
 DH-Minecrfat-Launcher-Setup/* linguist-vendored
 DH Minecrfat Launcher Setup/* linguist-vendored
+DH-Minecrfat-Launcher-Setup/* linguist-documentation
+DH Minecrfat Launcher Setup/* linguist-documentation
 *.wxi linguist-vendored=true
 *.wxs linguist-vendored=true
 *.wixproj linguist-vendored=true
